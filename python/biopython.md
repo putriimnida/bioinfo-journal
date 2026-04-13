@@ -79,7 +79,54 @@ Also note that just like a normal Python string, the Seq object is in some ways 
 
 
 ## Slicing a sequence
+```python
+>>> from Bio.Seq import Seq
+>>> my_seq = Seq("GATCGATGGGCCTATATAGGATCGAAAATCGC")
+>>> my_seq[4:12]
+Seq('GATGGGCC')
+```
+Note that `Seq` objects follow the usual indexing conventions for Python strings, with the first element of the sequence numbered 0. When you do a slice the first item is included (i.e. 4 in this case) and the last is excluded (12 in this case).
 
+Also like a Python string, you can do slices with a start, stop, and stride (the step size, which default to one). For instance, we can get the first, second, and third codon position of this DNA sequence.
+```python
+>>> my_seq[0::3]
+Seq('GCTGTAGTAAG')
+>>> my_seq[1::3]
+Seq('AGGCATGCATC')
+>>> my_seq[2::3]
+Seq('TAGCTAAGAC')
+```
+
+Stride trick with a Python string using a -1 to reverse the string. You can do with a `Seq` object too.
+```python
+>>> my_seq[::-1]
+Seq('CGCTAAAAGCTAGGATATATCCGGGTAGCTAG') # starts ath the end, ends at beginning, steps backward by 1
+>>> my_seq[::-2]
+Seq('CCAAGTGAAACGGACA') # every second character walking backwards
+```
+
+## Turning Seq objects into strings
+If you need a plain string, for example to write to a file , or insert into a database.
+```python
+>>> str(my_seq)
+'GATCGATGGGCCTATATAGGATCGAAAATCGC'
+```
+
+Since calling str() on a `Seq` object returns the full sequence as a string, you often don't actually have to do this conversion explicitly. Python does this automatically in the print function:
+```python
+>>> print(my_seq)
+GATCGATGGGCCTATATAGGATCGAAAATCGC
+```
+
+You can also use the `Seq` object directly with a `%s` placeholder when using the Python string formatting or interpolation operator(`%`).
+```python
+>>> print(fasta_format_string)
+>Name
+GATCGATGGGCCTATATAGGATCGAAAATCGC
+
+```
+This is the FASTA format, a standard way to represent biological sequences in bioinformatics. It consists of a header line starting with > (followed by the sequence name), then the actual sequence on the next line.
+This line of code constructs a simple FASTA format record (without worrying about line wrapping).
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
