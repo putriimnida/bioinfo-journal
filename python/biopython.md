@@ -129,5 +129,47 @@ This is the FASTA format, a standard way to represent biological sequences in bi
 This line of code constructs a simple FASTA format record (without worrying about line wrapping).
 
 
+## Concatenating or adding sequences
+Two `seq` objects can be concatenated by adding them:
+```python
+>>> from Bio.Seq import Seq
+>>> seq1 = Seq("ACGT")
+>>> seq2 = Seq("AACCGG")
+>>> seq1 + seq2
+Seq('ACGTAACCGG')
+```
+
+Biopython does not check the sequence contents and will not raise an exception if for example you concatenate a protein sequence and a DNA sequence (which is likely a mistake):
+```python
+>>> from Bio.Seq import Seq
+>>> protein_seq = Seq("EVRNAK")
+>>> dna_seq = Seq("ACGT")
+>>> protein_seq + dna_seq
+Seq('EVRNAKACGT')
+```
+
+To add many sequences together can be done with a for loop like this:
+```python
+>>> from Bio.Seq import Seq
+>>> list_of_seqs = [Seq("ACGT"), Seq("AACC"), Seq("GGTT")]
+>>> concatenated = Seq("")
+>>> for s in list_of_seqs:
+...     concatenated += s
+... 
+>>> concatenated
+Seq('ACGTAACCGGTT')
+```
+
+Like Python strings, Biopython `Seq` also has a `.join` method:
+```python
+>>> from Bio.Seq import Seq
+>>> contigs = [Seq("ATG"), Seq("ATCCCG"), Seq("TTGCA")]
+>>> spacer = Seq("N" * 10)
+>>> spacer.join(contigs)
+Seq('ATGNNNNNNNNNNATCCCGNNNNNNNNNNTTGCA')
+```
+
+## Changing case
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
