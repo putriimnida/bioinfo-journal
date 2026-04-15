@@ -170,6 +170,56 @@ Seq('ATGNNNNNNNNNNATCCCGNNNNNNNNNNTTGCA')
 ```
 
 ## Changing case
+Python strings have very useful `upper` and `lower` methods for changing the case. For example,
+```python
+>>> from Bio.Seq import Seq
+>>> dna_seq = Seq("acgtACGT")
+>>> dna_seq
+Seq('acgtACGT')
+>>> dna_seq.upper()
+Seq('ACGTACGT')
+>>> dna_seq.lower()
+Seq('acgtacgt')
+```
+
+These are useful for doing case insensitive matching:
+```python
+>>> "GTAC" in dna_seq
+False
+>>> "GTAC" in dna_seq.upper()
+True
+```
+
+## Nucleotide sequences and (reverse) complements
+For nucleotide sequences, you can easily obtain the complement or reverse complement of a `Seq` object using built-in methods:
+```python
+>>> from Bio.Seq import Seq
+>>> my_seq = Seq("GATCGATGGGCCTATATAGGATCGAAAATCGC")
+>>> my_seq
+Seq('GATCGATGGGCCTATATAGGATCGAAAATCGC')
+>>> my_seq.complement()
+Seq('CTAGCTACCCGGATATATCCTAGCTTTTAGCG')
+>>> my_seq.reverse_complement()
+Seq('GCGATTTTCGATCCTATATAGGCCCATCGATC')
+```
+
+As mentioned earlier, an easy way to just reverse a `Seq` object (or a Python string) is slice it with -1 step:
+```python
+>>> my_seq[::-1]
+Seq('CGCTAAAAGCTAGGATATATCCGGGTAGCTAG')
+```
+
+If you do accidentally end up trying to do something weird like taking the (reverse) complement of a protein sequence, the results are biologically meaningless:
+```python
+>>> from Bio.Seq import Seq
+>>> protein_seq = Seq("EVRNAK")
+>>> protein_seq.complement()
+Seq('EBYNTM')
+```
+Here the letter “E” is not a valid IUPAC ambiguity code for nucleotides, so was not complemented. However, “V” means “A”, “C” or “G” and has complement “B“, and so on.
+
+
+## Transcription
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
