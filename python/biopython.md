@@ -258,6 +258,41 @@ Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
 ```
 
 ## Translation
+Translate mRNA into coresponding protein sequence
+```python
+>>> from Bio.Seq import Seq
+>>> messenger_rna = Seq("AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG")
+>>> messenger_rna 
+Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+>>> messenger_rna.translate()
+Seq('MAIVMGR*KGAR*')
+```
+
+Translate directly from the coding strand DNA sequence:
+```python
+from Bio.Seq import Seq
+>>> from Bio.Seq import Seq
+>>> coding_dna = Seq("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG")
+>>> coding_dna
+Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+>>> coding_dna.translate()
+Seq('MAIVMGR*KGAR*')
+```
+
+In the above protein sequences that in addition to the end stop character, there is an internal stop as well. 
+The translation tables available in Biopython are based on those from the NCBI. By default, translation will use the standard genetic code (NCBI table id 1). Suppose we are dealing with a mitochondrial sequence. We need to tell the translation function to use the relevant genetic code instead:
+```python
+>>> coding_dna.translate(table="Vertebrate Mitochondrial")
+Seq('MAIVMGRWKGAR*')
+```
+
+or specify using the NCBI table number which is shorter, and often included in the feature annotation of GenBank files:
+```python
+>>> coding_dna.translate(table=2)
+Seq('MAIVMGRWKGAR*')
+```
+
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
