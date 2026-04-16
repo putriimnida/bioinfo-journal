@@ -220,6 +220,44 @@ Here the letter “E” is not a valid IUPAC ambiguity code for nucleotides, so 
 
 
 ## Transcription
+The actual biological transcription process works from the template strand, doing a reverse complement (TCAG -> CUGA) to give the mRNA. However, in Biopython and bioinformatics in general, we typically work directly with the coding strand because this means we can get the mRNA sequence just by switching T -> U.
+Create `Seq` objects for the coding and template DNA strands:
+```python
+>>> from Bio.Seq import Seq
+>>> coding_dna = Seq("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG")
+>>> coding_dna
+Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+>>> template_dna = coding_dna.reverse_complement()
+>>> template_dna
+Seq('CTATCGGGCACCCTTTCAGCGGCCCATTACAATGGCCAT')
+```
+
+Transcribe the coding strand into the coresponding mRNA using the `Seq` object's built-in `transcribe` method:
+```python
+>>> coding_dna
+Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+>>> messenger_rna = coding_dna.transcribe()
+>>> messenger_rna
+Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+```
+
+If you do want to do a true biological transcription starting with the template strand, then this becomes a two-step process:
+```python
+>>> template_dna.reverse_complement().transcribe()
+Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+```
+
+The `Seq` object also includes a back-transcription method for going from the mRNA to the coding strand of the DNA. This is also a simple U -> T substitution:
+```python
+>>> from Bio.Seq import Seq
+>>> messenger_rna = Seq("AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG")
+>>> messenger_rna
+Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+>>> messenger_rna.back_transcribe()
+Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+```
+
+## Translation
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
