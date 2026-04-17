@@ -292,6 +292,51 @@ or specify using the NCBI table number which is shorter, and often included in t
 Seq('MAIVMGRWKGAR*')
 ```
 
+Now you want to translate the nucleotides up to the first in frame stop codon, and then stop (as happens in nature):
+```python3
+>>> coding_dna.translate()
+Seq('MAIVMGR*KGAR*')
+>>> coding_dna.translate(to_stop=True)
+Seq('MAIVMGR')
+>>> coding_dna.translate(table=2)
+Seq('MAIVMGRWKGAR*')
+>>> coding_dna.translate(table=2, to_stop=True)
+Seq('MAIVMGRWKGAR')
+```
+
+Notice that when you use the `to_stop` argument, the stop codon itself is not translated, and the stop symbol is not included at the end of your protein sequence.
+
+You can even specify the stop symbol if you don't like the default asterisk:
+```python
+>>> coding_dna.translate(table=2, stop_symbol="@")
+Seq('MAIVMGRWKGAR@')
+```
+
+If your sequence uses a non-standard start codon as this happens a lot in bacteria – for example the gene yaaX in E. coli K12:
+```python
+>>> from Bio.Seq import Seq
+>>> gene = Seq(
+...     "GTGAAAAAGATGCAATCTATCGTACTCGCACTTTCCCTGGTTCTGGTCGCTCCCATGGCA"
+...     "GCACAGGCTGCGGAAATTACGTTAGTCCCGTCAGTAAAATTACAGATAGGCGATCGTGAT"
+...     "AATCGTGGCTATTACTGGGATGGAGGTCACTGGCGCGACCACGGCTGGTGGAAACAACAT"
+...     "TATGAATGGCGAGGCAATCGCTGGCACCTACACGGACCGCCGCCACCGCCGCGCCACCAT"
+...     "AAGAAAGCTCCTCATGATCATCACGGCGGTCATGGTCCAGGCAAACATCACCGCTAA"
+... )
+>>> gene.translate(table="Bacterial")
+Seq('VKKMQSIVLALSLVLVAPMAAQAAEITLVPSVKLQIGDRDNRGYYWDGGHWRDH...HR*')
+>>> gene.translate(table="Bacterial", to_stop=True)
+Seq('VKKMQSIVLALSLVLVAPMAAQAAEITLVPSVKLQIGDRDNRGYYWDGGHWRDH...HHR')
+>>> 
+```
+
+In the bacterial genetic code `GTG` is a valid start codon, and while it does normally encode Valine, if used as a start codon it should be translated as methionine. This happens if you tell Biopython your sequence is a complete CDS (Coding DNA Sequence):
+```python
+>>> gene.translate(table="Bacterial", cds=True)
+Seq('MKKMQSIVLALSLVLVAPMAAQAAEITLVPSVKLQIGDRDNRGYYWDGGHWRDH...HHR')
+```
+Using `cds=True` is safer when:
+- You expect a real protein-coding gene
+- You want biologically correct output
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
