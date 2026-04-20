@@ -339,5 +339,82 @@ Using `cds=True` is safer when:
 - You want biologically correct output
 
 
+## Translation Tables
+the Standard translation table and translation table for Vertebrate Mitochondrial DNA.
+```python3
+>>> from Bio.Data import CodonTable
+>>> standard_table = CodonTable.unambiguous_dna_by_name["Standard"]
+>>> mito_table = CodonTable.unambiguous_dna_by_name["Vertebrate Mitochondrial"]
+```
+
+Alternatively, these tables are labeled with ID number 1 and 2, respectively:
+```python3
+>>> from Bio.Data import CodonTable
+>>> standard_table = CodonTable.unambiguous_dna_by_id[1]
+>>> mito_table = CodonTable.unambiguous_dna_by_id[2]
+>>> print(standard_table)
+Table 1 Standard, SGC0
+
+  |  T      |  C      |  A      |  G      |
+--+---------+---------+---------+---------+--
+T | TTT F   | TCT S   | TAT Y   | TGT C   | T
+T | TTC F   | TCC S   | TAC Y   | TGC C   | C
+T | TTA L   | TCA S   | TAA Stop| TGA Stop| A
+T | TTG L(s)| TCG S   | TAG Stop| TGG W   | G
+--+---------+---------+---------+---------+--
+C | CTT L   | CCT P   | CAT H   | CGT R   | T
+C | CTC L   | CCC P   | CAC H   | CGC R   | C
+C | CTA L   | CCA P   | CAA Q   | CGA R   | A
+C | CTG L(s)| CCG P   | CAG Q   | CGG R   | G
+--+---------+---------+---------+---------+--
+A | ATT I   | ACT T   | AAT N   | AGT S   | T
+A | ATC I   | ACC T   | AAC N   | AGC S   | C
+A | ATA I   | ACA T   | AAA K   | AGA R   | A
+A | ATG M(s)| ACG T   | AAG K   | AGG R   | G
+--+---------+---------+---------+---------+--
+G | GTT V   | GCT A   | GAT D   | GGT G   | T
+G | GTC V   | GCC A   | GAC D   | GGC G   | C
+G | GTA V   | GCA A   | GAA E   | GGA G   | A
+G | GTG V   | GCG A   | GAG E   | GGG G   | G
+--+---------+---------+---------+---------+--
+>>> print(mito_table)
+Table 2 Vertebrate Mitochondrial, SGC1
+
+  |  T      |  C      |  A      |  G      |
+--+---------+---------+---------+---------+--
+T | TTT F   | TCT S   | TAT Y   | TGT C   | T
+T | TTC F   | TCC S   | TAC Y   | TGC C   | C
+T | TTA L   | TCA S   | TAA Stop| TGA W   | A
+T | TTG L   | TCG S   | TAG Stop| TGG W   | G
+--+---------+---------+---------+---------+--
+C | CTT L   | CCT P   | CAT H   | CGT R   | T
+C | CTC L   | CCC P   | CAC H   | CGC R   | C
+C | CTA L   | CCA P   | CAA Q   | CGA R   | A
+C | CTG L   | CCG P   | CAG Q   | CGG R   | G
+--+---------+---------+---------+---------+--
+A | ATT I(s)| ACT T   | AAT N   | AGT S   | T
+A | ATC I(s)| ACC T   | AAC N   | AGC S   | C
+A | ATA M(s)| ACA T   | AAA K   | AGA Stop| A
+A | ATG M(s)| ACG T   | AAG K   | AGG Stop| G
+--+---------+---------+---------+---------+--
+G | GTT V   | GCT A   | GAT D   | GGT G   | T
+G | GTC V   | GCC A   | GAC D   | GGC G   | C
+G | GTA V   | GCA A   | GAA E   | GGA G   | A
+G | GTG V(s)| GCG A   | GAG E   | GGG G   | G
+--+---------+---------+---------+---------+--
+```
+
+Try to do gene finding:
+```python3
+>>> mito_table.stop_codons
+['TAA', 'TAG', 'AGA', 'AGG']
+>>> mito_table.start_codons
+['ATT', 'ATC', 'ATA', 'ATG', 'GTG']
+>>> mito_table.forward_table["ACG"]
+'T'
+```
+
+## Comparing Seq objects
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 

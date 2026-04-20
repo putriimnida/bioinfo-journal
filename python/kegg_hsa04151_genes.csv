@@ -1,0 +1,363 @@
+entrez_id,symbol,description
+10000,AKT3,AKT serine/threonine kinase 3
+10018,BCL2L11,BCL2 like 11
+100533105,C8orf44-SGK3,C8orf44-SGK3 readthrough
+10110,SGK2,serum/glucocorticoid regulated kinase 2
+10161,LPAR6,lysophosphatidic acid receptor 6
+1017,CDK2,cyclin dependent kinase 2
+1019,CDK4,cyclin dependent kinase 4
+1021,CDK6,cyclin dependent kinase 6
+1026,CDKN1A,cyclin dependent kinase inhibitor 1A
+1027,CDKN1B,cyclin dependent kinase inhibitor 1B
+102723407,IGH,immunoglobulin heavy variable 4-38-2-like
+10319,LAMC3,laminin subunit gamma 3
+10488,CREB3,cAMP responsive element binding protein 3
+10681,GNB5,G protein subunit beta 5
+10971,YWHAQ,tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein theta
+1101,CHAD,chondroadherin
+110117499,P3R3URF-PIK3R3,P3R3URF-PIK3R3 readthrough
+11140,CDC37,"cell division cycle 37, HSP90 cochaperone"
+1128,CHRM1,cholinergic receptor muscarinic 1
+1129,CHRM2,cholinergic receptor muscarinic 2
+1147,CHUK,component of inhibitor of nuclear factor kappa B kinase complex
+117145,THEM4,thioesterase superfamily member 4
+118788,PIK3AP1,phosphoinositide-3-kinase adaptor protein 1
+125467750,EFNA4-EFNA3,EFNA4-EFNA3 readthrough
+1277,COL1A1,collagen type I alpha 1 chain
+1278,COL1A2,collagen type I alpha 2 chain
+1280,COL2A1,collagen type II alpha 1 chain
+1282,COL4A1,collagen type IV alpha 1 chain
+1284,COL4A2,collagen type IV alpha 2 chain
+1285,COL4A3,collagen type IV alpha 3 chain
+1286,COL4A4,collagen type IV alpha 4 chain
+1287,COL4A5,collagen type IV alpha 5 chain
+1288,COL4A6,collagen type IV alpha 6 chain
+1291,COL6A1,collagen type VI alpha 1 chain
+1292,COL6A2,collagen type VI alpha 2 chain
+1293,COL6A3,collagen type VI alpha 3 chain
+1297,COL9A1,collagen type IX alpha 1 chain
+1298,COL9A2,collagen type IX alpha 2 chain
+1299,COL9A3,collagen type IX alpha 3 chain
+1311,COMP,cartilage oligomeric matrix protein
+131873,COL6A6,collagen type VI alpha 6 chain
+1385,CREB1,cAMP responsive element binding protein 1
+1386,ATF2,activating transcription factor 2
+1388,ATF6B,activating transcription factor 6 beta
+1435,CSF1,colony stimulating factor 1
+1436,CSF1R,colony stimulating factor 1 receptor
+1440,CSF3,colony stimulating factor 3
+1441,CSF3R,colony stimulating factor 3 receptor
+1442,CSH1,chorionic somatomammotropin hormone 1
+1443,CSH2,chorionic somatomammotropin hormone 2
+1444,CSHL1,chorionic somatomammotropin hormone like 1
+146850,PIK3R6,phosphoinositide-3-kinase regulatory subunit 6
+148327,CREB3L4,cAMP responsive element binding protein 3 like 4
+1902,LPAR1,lysophosphatidic acid receptor 1
+1942,EFNA1,ephrin A1
+1943,EFNA2,ephrin A2
+1944,EFNA3,ephrin A3
+1945,EFNA4,ephrin A4
+1946,EFNA5,ephrin A5
+1950,EGF,epidermal growth factor
+1956,EGFR,epidermal growth factor receptor
+1969,EPHA2,EPH receptor A2
+1975,EIF4B,eukaryotic translation initiation factor 4B
+1977,EIF4E,eukaryotic translation initiation factor 4E
+1978,EIF4EBP1,eukaryotic translation initiation factor 4E binding protein 1
+200186,CRTC2,CREB regulated transcription coactivator 2
+2056,EPO,erythropoietin
+2057,EPOR,erythropoietin receptor
+2064,ERBB2,erb-b2 receptor tyrosine kinase 2
+2065,ERBB3,erb-b2 receptor tyrosine kinase 3
+2066,ERBB4,erb-b2 receptor tyrosine kinase 4
+2069,EREG,epiregulin
+207,AKT1,AKT serine/threonine kinase 1
+208,AKT2,AKT serine/threonine kinase 2
+2149,F2R,coagulation factor II thrombin receptor
+2246,FGF1,fibroblast growth factor 1
+2247,FGF2,fibroblast growth factor 2
+2248,FGF3,fibroblast growth factor 3
+2249,FGF4,fibroblast growth factor 4
+2250,FGF5,fibroblast growth factor 5
+2251,FGF6,fibroblast growth factor 6
+2252,FGF7,fibroblast growth factor 7
+2253,FGF8,fibroblast growth factor 8
+2254,FGF9,fibroblast growth factor 9
+2255,FGF10,fibroblast growth factor 10
+2260,FGFR1,fibroblast growth factor receptor 1
+2261,FGFR3,fibroblast growth factor receptor 3
+2263,FGFR2,fibroblast growth factor receptor 2
+2264,FGFR4,fibroblast growth factor receptor 4
+2277,VEGFD,vascular endothelial growth factor D
+22798,LAMB4,laminin subunit beta 4
+22801,ITGA11,integrin subunit alpha 11
+23035,PHLPP2,PH domain and leucine rich repeat protein phosphatase 2
+2309,FOXO3,forkhead box O3
+2321,FLT1,fms related receptor tyrosine kinase 1
+2322,FLT3,fms related receptor tyrosine kinase 3
+2323,FLT3LG,fms related receptor tyrosine kinase 3 ligand
+23239,PHLPP1,PH domain and leucine rich repeat protein phosphatase 1
+2324,FLT4,fms related receptor tyrosine kinase 4
+2335,FN1,fibronectin 1
+23533,PIK3R5,phosphoinositide-3-kinase regulatory subunit 5
+23566,LPAR3,lysophosphatidic acid receptor 3
+23678,SGK3,serum/glucocorticoid regulated kinase family member 3
+2475,MTOR,mechanistic target of rapamycin kinase
+253314,EIF4E1B,eukaryotic translation initiation factor 4E family member 1B
+2538,G6PC1,glucose-6-phosphatase catalytic subunit 1
+256076,COL6A5,collagen type VI alpha 5 chain
+26281,FGF20,fibroblast growth factor 20
+26291,FGF21,fibroblast growth factor 21
+2668,GDNF,glial cell derived neurotrophic factor
+2688,GH1,growth hormone 1
+2689,GH2,growth hormone 2
+2690,GHR,growth hormone receptor
+27006,FGF22,fibroblast growth factor 22
+2782,GNB1,G protein subunit beta 1
+2783,GNB2,G protein subunit beta 2
+2784,GNB3,G protein subunit beta 3
+2785,GNG3,G protein subunit gamma 3
+2786,GNG4,G protein subunit gamma 4
+2787,GNG5,G protein subunit gamma 5
+2788,GNG7,G protein subunit gamma 7
+2790,GNG10,G protein subunit gamma 10
+2791,GNG11,G protein subunit gamma 11
+2792,GNGT1,G protein subunit gamma transducin 1
+2793,GNGT2,G protein subunit gamma transducin 2
+28227,PPP2R3B,protein phosphatase 2 regulatory subunit B''beta
+284,ANGPT1,angiopoietin 1
+284217,LAMA1,laminin subunit alpha 1
+2846,LPAR4,lysophosphatidic acid receptor 4
+285,ANGPT2,angiopoietin 2
+2885,GRB2,growth factor receptor bound protein 2
+2932,GSK3B,glycogen synthase kinase 3 beta
+29941,PKN3,protein kinase N3
+2997,GYS1,glycogen synthase 1
+2998,GYS2,glycogen synthase 2
+3082,HGF,hepatocyte growth factor
+3164,NR4A1,nuclear receptor subfamily 4 group A member 1
+3265,HRAS,"HRas proto-oncogene, GTPase"
+3320,HSP90AA1,heat shock protein 90 alpha family class A member 1
+3326,HSP90AB1,heat shock protein 90 alpha family class B member 1
+3371,TNC,tenascin C
+3381,IBSP,integrin binding sialoprotein
+3439,IFNA1,interferon alpha 1
+3440,IFNA2,interferon alpha 2
+3441,IFNA4,interferon alpha 4
+3442,IFNA5,interferon alpha 5
+3443,IFNA6,interferon alpha 6
+3444,IFNA7,interferon alpha 7
+3445,IFNA8,interferon alpha 8
+3446,IFNA10,interferon alpha 10
+3447,IFNA13,interferon alpha 13
+3448,IFNA14,interferon alpha 14
+3449,IFNA16,interferon alpha 16
+3451,IFNA17,interferon alpha 17
+3452,IFNA21,interferon alpha 21
+3454,IFNAR1,interferon alpha and beta receptor subunit 1
+3455,IFNAR2,interferon alpha and beta receptor subunit 2
+3456,IFNB1,interferon beta 1
+3479,IGF1,insulin like growth factor 1
+3480,IGF1R,insulin like growth factor 1 receptor
+3481,IGF2,insulin like growth factor 2
+3551,IKBKB,inhibitor of nuclear factor kappa B kinase subunit beta
+3558,IL2,interleukin 2
+3559,IL2RA,interleukin 2 receptor subunit alpha
+356,FASLG,Fas ligand
+3560,IL2RB,interleukin 2 receptor subunit beta
+3561,IL2RG,interleukin 2 receptor subunit gamma
+3562,IL3,interleukin 3
+3563,IL3RA,interleukin 3 receptor subunit alpha
+3565,IL4,interleukin 4
+3566,IL4R,interleukin 4 receptor
+3569,IL6,interleukin 6
+3570,IL6R,interleukin 6 receptor
+3574,IL7,interleukin 7
+3575,IL7R,interleukin 7 receptor
+3630,INS,insulin
+3643,INSR,insulin receptor
+3655,ITGA6,integrin subunit alpha 6
+3667,IRS1,insulin receptor substrate 1
+3672,ITGA1,integrin subunit alpha 1
+3673,ITGA2,integrin subunit alpha 2
+3674,ITGA2B,integrin subunit alpha 2b
+3675,ITGA3,integrin subunit alpha 3
+3676,ITGA4,integrin subunit alpha 4
+3678,ITGA5,integrin subunit alpha 5
+3679,ITGA7,integrin subunit alpha 7
+3680,ITGA9,integrin subunit alpha 9
+3685,ITGAV,integrin subunit alpha V
+3688,ITGB1,integrin subunit beta 1
+3690,ITGB3,integrin subunit beta 3
+3691,ITGB4,integrin subunit beta 4
+3693,ITGB5,integrin subunit beta 5
+3694,ITGB6,integrin subunit beta 6
+3695,ITGB7,integrin subunit beta 7
+3696,ITGB8,integrin subunit beta 8
+3716,JAK1,Janus kinase 1
+3717,JAK2,Janus kinase 2
+3718,JAK3,Janus kinase 3
+374,AREG,amphiregulin
+3791,KDR,kinase insert domain receptor
+3815,KIT,"KIT proto-oncogene, receptor tyrosine kinase"
+3845,KRAS,"KRAS proto-oncogene, GTPase"
+3908,LAMA2,laminin subunit alpha 2
+3909,LAMA3,laminin subunit alpha 3
+3910,LAMA4,laminin subunit alpha 4
+3911,LAMA5,laminin subunit alpha 5
+3912,LAMB1,laminin subunit beta 1
+3913,LAMB2,laminin subunit beta 2
+3914,LAMB3,laminin subunit beta 3
+3915,LAMC1,laminin subunit gamma 1
+3918,LAMC2,laminin subunit gamma 2
+4170,MCL1,"MCL1 apoptosis regulator, BCL2 family member"
+4193,MDM2,MDM2 proto-oncogene
+4233,MET,"MET proto-oncogene, receptor tyrosine kinase"
+4254,KITLG,KIT ligand
+4515,MTCP1,mature T cell proliferation 1
+4602,MYB,"MYB proto-oncogene, transcription factor"
+4609,MYC,"MYC proto-oncogene, bHLH transcription factor"
+468,ATF4,activating transcription factor 4
+4790,NFKB1,nuclear factor kappa B subunit 1
+4803,NGF,nerve growth factor
+4804,NGFR,nerve growth factor receptor
+4846,NOS3,nitric oxide synthase 3
+4893,NRAS,"NRAS proto-oncogene, GTPase"
+4902,NRTN,neurturin
+4908,NTF3,neurotrophin 3
+4909,NTF4,neurotrophin 4
+4914,NTRK1,neurotrophic receptor tyrosine kinase 1
+4915,NTRK2,neurotrophic receptor tyrosine kinase 2
+5008,OSM,oncostatin M
+5105,PCK1,phosphoenolpyruvate carboxykinase 1
+5106,PCK2,"phosphoenolpyruvate carboxykinase 2, mitochondrial"
+51378,ANGPT4,angiopoietin 4
+5154,PDGFA,platelet derived growth factor subunit A
+5155,PDGFB,platelet derived growth factor subunit B
+5156,PDGFRA,platelet derived growth factor receptor alpha
+5159,PDGFRB,platelet derived growth factor receptor beta
+5170,PDPK1,3-phosphoinositide dependent protein kinase 1
+51764,GNG13,G protein subunit gamma 13
+5228,PGF,placental growth factor
+5290,PIK3CA,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha"
+5291,PIK3CB,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta"
+5293,PIK3CD,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit delta"
+5294,PIK3CG,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit gamma"
+5295,PIK3R1,phosphoinositide-3-kinase regulatory subunit 1
+5296,PIK3R2,phosphoinositide-3-kinase regulatory subunit 2
+54331,GNG2,G protein subunit gamma 2
+54541,DDIT4,DNA damage inducible transcript 4
+55012,PPP2R3C,protein phosphatase 2 regulatory subunit B''gamma
+5515,PPP2CA,protein phosphatase 2 catalytic subunit alpha
+5516,PPP2CB,protein phosphatase 2 catalytic subunit beta
+5518,PPP2R1A,protein phosphatase 2 scaffold subunit Aalpha
+5519,PPP2R1B,protein phosphatase 2 scaffold subunit Abeta
+5520,PPP2R2A,protein phosphatase 2 regulatory subunit Balpha
+5521,PPP2R2B,protein phosphatase 2 regulatory subunit Bbeta
+5522,PPP2R2C,protein phosphatase 2 regulatory subunit Bgamma
+5523,PPP2R3A,protein phosphatase 2 regulatory subunit B''alpha
+5525,PPP2R5A,protein phosphatase 2 regulatory subunit B'alpha
+5526,PPP2R5B,protein phosphatase 2 regulatory subunit B'beta
+5527,PPP2R5C,protein phosphatase 2 regulatory subunit B'gamma
+5528,PPP2R5D,protein phosphatase 2 regulatory subunit B'delta
+5529,PPP2R5E,protein phosphatase 2 regulatory subunit B'epsilon
+5562,PRKAA1,protein kinase AMP-activated catalytic subunit alpha 1
+5563,PRKAA2,protein kinase AMP-activated catalytic subunit alpha 2
+5578,PRKCA,protein kinase C alpha
+55844,PPP2R2D,protein phosphatase 2 regulatory subunit Bdelta
+5585,PKN1,protein kinase N1
+5586,PKN2,protein kinase N2
+5594,MAPK1,mitogen-activated protein kinase 1
+5595,MAPK3,mitogen-activated protein kinase 3
+55970,GNG12,G protein subunit gamma 12
+56034,PDGFC,platelet derived growth factor C
+5604,MAP2K1,mitogen-activated protein kinase kinase 1
+5605,MAP2K2,mitogen-activated protein kinase kinase 2
+5617,PRL,prolactin
+5618,PRLR,prolactin receptor
+5623,PSPN,persephin
+5649,RELN,reelin
+57121,LPAR5,lysophosphatidic acid receptor 5
+572,BAD,BCL2 associated agonist of cell death
+5728,PTEN,phosphatase and tensin homolog
+5747,PTK2,protein tyrosine kinase 2
+57521,RPTOR,regulatory associated protein of MTOR complex 1
+57818,G6PC2,glucose-6-phosphatase catalytic subunit 2
+5879,RAC1,Rac family small GTPase 1
+5894,RAF1,"Raf-1 proto-oncogene, serine/threonine kinase"
+5934,RBL2,RB transcriptional corepressor like 2
+59345,GNB4,G protein subunit beta 4
+595,CCND1,cyclin D1
+596,BCL2,BCL2 apoptosis regulator
+5970,RELA,"RELA proto-oncogene, NF-kB subunit"
+5979,RET,ret proto-oncogene
+598,BCL2L1,BCL2 like 1
+6009,RHEB,"Ras homolog, mTORC1 binding"
+6194,RPS6,ribosomal protein S6
+6198,RPS6KB1,ribosomal protein S6 kinase B1
+6199,RPS6KB2,ribosomal protein S6 kinase B2
+6256,RXRA,retinoid X receptor alpha
+627,BDNF,brain derived neurotrophic factor
+63923,TNN,tenascin N
+64223,MLST8,"MTOR associated protein, LST8 homolog"
+6446,SGK1,serum/glucocorticoid regulated kinase 1
+64764,CREB3L2,cAMP responsive element binding protein 3 like 2
+6654,SOS1,SOS Ras/Rac guanine nucleotide exchange factor 1
+6655,SOS2,SOS Ras/Rho guanine nucleotide exchange factor 2
+6696,SPP1,secreted phosphoprotein 1
+672,BRCA1,BRCA1 DNA repair associated
+6794,STK11,serine/threonine kinase 11
+6850,SYK,spleen associated tyrosine kinase
+7010,TEK,TEK receptor tyrosine kinase
+7039,TGFA,transforming growth factor alpha
+7057,THBS1,thrombospondin 1
+7058,THBS2,thrombospondin 2
+7059,THBS3,thrombospondin 3
+7060,THBS4,thrombospondin 4
+7097,TLR2,toll like receptor 2
+7099,TLR4,toll like receptor 4
+7143,TNR,tenascin R
+7148,TNXB,tenascin XB
+7157,TP53,tumor protein p53
+7184,HSP90B1,heat shock protein 90 beta family member 1
+7248,TSC1,TSC complex subunit 1
+7249,TSC2,TSC complex subunit 2
+7422,VEGFA,vascular endothelial growth factor A
+7423,VEGFB,vascular endothelial growth factor B
+7424,VEGFC,vascular endothelial growth factor C
+7448,VTN,vitronectin
+7450,VWF,von Willebrand factor
+7529,YWHAB,tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein beta
+7531,YWHAE,tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein epsilon
+7532,YWHAG,tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein gamma
+7533,YWHAH,tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein eta
+7534,YWHAZ,tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein zeta
+80310,PDGFD,platelet derived growth factor D
+8074,FGF23,fibroblast growth factor 23
+8115,TCL1A,TCL1 family AKT coactivator A
+842,CASP9,caspase 9
+84699,CREB3L3,cAMP responsive element binding protein 3 like 3
+8503,PIK3R3,phosphoinositide-3-kinase regulatory subunit 3
+8515,ITGA10,integrin subunit alpha 10
+8516,ITGA8,integrin subunit alpha 8
+8517,IKBKG,inhibitor of nuclear factor kappa B kinase regulatory subunit gamma
+8817,FGF18,fibroblast growth factor 18
+8822,FGF17,fibroblast growth factor 17
+8823,FGF16,fibroblast growth factor 16
+894,CCND2,cyclin D2
+896,CCND3,cyclin D3
+898,CCNE1,cyclin E1
+9048,ARTN,artemin
+90993,CREB3L1,cAMP responsive element binding protein 3 like 1
+9134,CCNE2,cyclin E2
+9170,LPAR2,lysophosphatidic acid receptor 2
+9180,OSMR,oncostatin M receptor
+9223,MAGI1,"membrane associated guanylate kinase, WW and PDZ domain containing 1"
+92579,G6PC3,glucose-6-phosphatase catalytic subunit 3
+930,CD19,CD19 molecule
+94235,GNG8,G protein subunit gamma 8
+9470,EIF4E2,eukaryotic translation initiation factor 4E family member 2
+9586,CREB5,cAMP responsive element binding protein 5
+9623,TCL1B,TCL1 family AKT coactivator B
+9863,MAGI2,"membrane associated guanylate kinase, WW and PDZ domain containing 2"
+9965,FGF19,fibroblast growth factor 19
