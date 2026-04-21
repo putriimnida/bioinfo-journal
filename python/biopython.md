@@ -415,6 +415,17 @@ Try to do gene finding:
 ```
 
 ## Comparing Seq objects
+Sequence comparison is actually complicated and there is no easy way to decide if two sequences are equal. The basic problem is the meaning of the letters in a sequence are context dependent, the letter "A" could be part of a DNA, RNA or protein sequence.
+```python
+>>> from Bio.Seq import Seq
+>>> seq1 = Seq("ACGT")
+>>> "ACGT" == seq1
+True
+>>> seq1 == "ACGT"
+True
+```
+
+## Sequences with unknown sequence contents
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
