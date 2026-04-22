@@ -426,6 +426,26 @@ True
 ```
 
 ## Sequences with unknown sequence contents
+In some cases, the length of a sequence may be known but not the actual letters constituting it. For instance, GenBank and EMBL files may represent a genomic DNA sequence only by its config information, without specifying the sequence contents explicitly. Such sequences can be represented by creating a `Seq` object with the argument `None`, followed by the sequence length:
+```python
+>>> from Bio.Seq import Seq
+>>> unknown_seq = Seq(None, 10)
+```
+
+The `Seq` object thus created has a well-defined length. Any attempt to access the sequence contents, however, will raise an `UndefinedSequenceError`
+```python
+>>> unknown_seq
+Seq(None, length=10)
+>>> len(unknown_seq)
+10
+>>> print(unknown_seq)
+Traceback (most recent call last):
+...
+Bio.Seq.UndefinedSequenceError: Sequence content is undefined
+>>>
+```
+
+## Sequences with partially defined sequence contents
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
