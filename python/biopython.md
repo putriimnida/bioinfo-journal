@@ -494,7 +494,55 @@ When one of the sequences is undefined, Biopython does NOT fill it with letters,
 
 
 ## MutableSeq objects
-
+Just like the normal Python string, the `Seq` object is "read only", or in Python terminology, immutable. Apart from wanting the `Seq` object to act like a string, this is also a useful default since in many biological applications you want to ensure you are not changing your sequence data:
+```python
+>>> from Bio.Seq import Seq
+>>> my_seq = Seq("GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA")
+```
+Observe what happens if you try to edit the sequence 
+```python
+>>> my_seq[5] = "G"
+Traceback (most recent call last):
+  File "<python-input-2>", line 1, in <module>
+    my_seq[5] = "G"
+    ~~~~~~^^^
+TypeError: 'Seq' object does not support item assignment
+```
+However, you can convert it into a mutable sequence (a `MutableSeq` object) and do pretty much anything you want with it:
+```python
+>>> from Bio.Seq import MutableSeq
+>>> mutable_seq = MutableSeq(my_seq)
+>>> mutable_seq
+MutableSeq('GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA')
+```
+Alternatively, you can create a `MutableSeq` object directly from a string:
+```python
+>>> from Bio.Seq import MutableSeq
+>>> mutable_seq = MutableSeq("GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA")
+```
+Either way will give you a sequence object that can be changed:
+```python
+>>> mutable_seq
+MutableSeq('GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA')
+>>> mutable_seq[5] = "C"
+>>> mutable_seq
+MutableSeq('GCCATCGTAATGGGCCGCTGAAAGGGTGCCCGA')
+>>> mutable_seq.remove("T")
+>>> mutable_seq
+MutableSeq('GCCACGTAATGGGCCGCTGAAAGGGTGCCCGA')
+>>> mutable_seq.reverse()
+>>> mutable_seq
+MutableSeq('AGCCCGTGGGAAAGTCGCCGGGTAATGCACCG')
+```
+Note that the `MutableSeq` object's `reverse()` method, like `reverse()` method of a Python list, reverses the sequence in place.
+An important technical difference between mutable and immutable objects in Python means that you can't use a `MutableSeq` object as a dictionary key, but you can use a Python string or a `Seq` object in this way.
+Once you have finished editing your a `Mutableseq` object, it's easy to get back to a read-only `Seq` object should you need to:
+```python
+>>> from Bio.Seq import Seq
+>>> new_seq = Seq(mutable_seq)
+>>> new_seq
+Seq('AGCCCGTGGGAAAGTCGCCGGGTAATGCACCG')
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
