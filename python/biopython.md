@@ -544,5 +544,23 @@ Once you have finished editing your a `Mutableseq` object, it's easy to get back
 Seq('AGCCCGTGGGAAAGTCGCCGGGTAATGCACCG')
 ```
 
+## Finding subsequences
+Sequence objects have `find`, `rfind`, `index`, and `rindex` methods that perform the same function as the corresponding methods on plain string objects. The only difference is that the subsequence can be a string (`str`), `bytes`, `bytearray`, `Seq`, or `MutableSeq` object:
+```python
+>>> from Bio.Seq import Seq, MutableSeq
+>>> seq = Seq("GCCATTGTAATGGGCCGCTGAAAGGGTGCCCGA")
+>>> seq.index("ATGGGCCGC")
+9
+>>> seq.index(b"ATGGGCCGC")
+9
+>>> seq.index(bytearray(b"ATGGGCCGC"))
+9
+>>> seq.index(Seq("ATGGGCCGC"))
+9
+>>> seq.index(MutableSeq("ATGGGCCGC"))
+9
+```
+
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
