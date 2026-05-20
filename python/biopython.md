@@ -561,6 +561,42 @@ Sequence objects have `find`, `rfind`, `index`, and `rindex` methods that perfor
 9
 ```
 
+A `ValueError` is raised if the subsequence is not found:
+```python
+>>> seq.index("ACTG")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  ...
+ValueError: subsection not found
+```
+while the `find` method returns -1 if the subsequence is not found:
+```python
+>>> seq.find("ACTG")
+-1
+```
+The methods `rfind` and `rindex` search for the subsequence starting from the right hand side of the sequence:
+```python
+>>> seq.find("CC")
+1
+>>> seq.rfind("CC")
+29
+```
+Use the `search` method to search for multiple subsequences at the same time. This method returns an iterator:
+```python
+>>> for index, sub in seq.search(["CC", "GGG", "CC"]):
+...     print(index, sub)
+... 
+1 CC
+11 GGG
+14 CC
+23 GGG
+28 CC
+29 CC
+```
+The `search` method also takes plain strings, `bytes`, `bytearray`, `Seq`, and `MutableSeq` objects as subsequences; identical subsequences are reported only once, as in the example above.
+
+
+## Working with strings directly 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
