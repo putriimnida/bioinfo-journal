@@ -597,6 +597,23 @@ The `search` method also takes plain strings, `bytes`, `bytearray`, `Seq`, and `
 
 
 ## Working with strings directly 
+If you don't want to use the sequence objects, or prefer a functional programming style to an object orientated one, there are module level functions in `Bio.Seq` will accept plain Python strings, `Seq` objects or `MutableSeq` objects:
+```python
+>>> from Bio.Seq import reverse_complement, transcribe, back_transcribe, translate
+>>> my_string = "GCTGTTATGGGTCGTTGGAAGGGTGGTCGTGCTGCTGGTTAG"
+>>> reverse_complement(my_string)
+'CTAACCAGCAGCACGACCACCCTTCCAACGACCCATAACAGC'
+>>> transcribe(my_string)
+'GCUGUUAUGGGUCGUUGGAAGGGUGGUCGUGCUGCUGGUUAG'
+>>> back_transcribe(my_string)
+'GCTGTTATGGGTCGTTGGAAGGGTGGTCGTGCTGCTGGTTAG'
+>>> translate(my_string)
+'AVMGRWKGGRAAG*'
+```
+
+
+# Sequence annotation objects
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
