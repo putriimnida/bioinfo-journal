@@ -614,6 +614,34 @@ If you don't want to use the sequence objects, or prefer a functional programmin
 
 # Sequence annotation objects
 
+## The SeqRecord object
+The `SeqRecord` class is quite simple, and offers the following information as attributes:
+### .seq
+The sequence itself, typically a `Seq` object.
+
+### .id
+The primary ID used to identify the sequence - a string. In most cases this is something like an accession number.
+
+### .name
+A “common” name/id for the sequence – a string. In some cases this will be the same as the accession number, but it could also be a clone name. Think of this as being analogous to the LOCUS id in a GenBank record.
+
+### .description
+A human readable desc or expressive name for the sequence – a string.
+
+### .letter_annotations
+Holds per-letter-annotations using a (restricted) dictionary of additional information about the letters in the sequence. This is often used for quality scores (e.g. Section Simple quality filtering for FASTQ files) or secondary structure information (e.g. from Stockholm/PFAM alignment files).
+
+### .annotations
+A dictionary of additional information about the sequence. The keys are the name of the information, and the information is contained in the value. This allows the addition of more “unstructured” information to the sequence.
+
+### .features
+A list of `SeqFeature` objects with more structured information about the features on a sequence (e.g. position of genes on a genome, or domains on a protein sequence).
+
+### .dbxrefs
+A list of database cross-references as strings.
+
+## Creating a SeqRecord
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
