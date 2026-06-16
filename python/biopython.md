@@ -641,7 +641,49 @@ A list of `SeqFeature` objects with more structured information about the featur
 A list of database cross-references as strings.
 
 ## Creating a SeqRecord
+### SeqRecord objects from scratch
+```python
+>>> from Bio.Seq import Seq
+>>> simple_seq = Seq("GATC")
+>>> from Bio.SeqRecord import SeqRecord
+>>> simple_seq_r = SeqRecord(simple_seq)
+```
+Additionally, you can also pass the id, name and description to the initialization function, but if not they will be set as strings indicating they are unknown, and can be modified subsequently:
+```python
+>>> simple_seq_r.id
+'<unknown id>'
+>>> simple_seq_r.id = "AC12345"
+>>> simple_seq_r.description = "Made up sequence I wish I could write a paper about"
+>>> print(simple_seq_r.description)
+Made up sequence I wish I could write a paper about
+>>> simple_seq_r.seq
+Seq('GATC')
+```
+Including an identifier is very important if you want to output your `SeqRecord` to a file. You would normally include this when creating the object:
+```python
+>>> from Bio.Seq import Seq
+>>> simple_seq = Seq("GATC")
+>>> from Bio.SeqRecord import SeqRecord
+>>> simple_seq_r = SeqRecord(simple_seq, id="AC12345")
+```
+As mentioned above, the `SeqRecord` has a dictionary attribute `annotations`. This is used for any miscellaneous annotations that doesn’t fit under one of the other more specific attributes. Adding annotations is easy, and just involves dealing directly with the annotation dictionary:
+```python
+>>> simple_seq_r.annotations["evidence"] = "None. I just made it up"
+>>> print(simple_seq_r.annotations)
+{'evidence': 'None. I just made it up'}
+>>> print(simple_seq_r.annotations["evidence"])
+None. I just made it up
+```
+Working with per-letter-annotations is similar, letter_annotations is a dictionary like attribute which will let you assign any Python sequence (i.e. a string, list or tuple) which has the same length as the sequence:
+```python
+>>> simple_seq_r.letter_annotations["phred_quality"] = [40, 40, 38, 30]
+>>> print(simple_seq_r.letter_annotations)
+{'phred_quality': [40, 40, 38, 30]}
+>>> print(simple_seq_r.letter_annotations["phred_quality"])
+[40, 40, 38, 30]
+```
 
+## SeqRecord objects from FASTA files
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
