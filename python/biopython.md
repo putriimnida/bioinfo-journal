@@ -684,6 +684,12 @@ Working with per-letter-annotations is similar, letter_annotations is a dictiona
 ```
 
 ## SeqRecord objects from FASTA files
+```python
+>>> from Bio import SeqIO
+>>> record = SeqIO.read("NC_005816.fna", "fasta")
+>>> record
+SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='gi|45478711|ref|NC_005816.1|', name='gi|45478711|ref|NC_005816.1|', description='gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=[])
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
