@@ -690,6 +690,11 @@ Working with per-letter-annotations is similar, letter_annotations is a dictiona
 >>> record
 SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='gi|45478711|ref|NC_005816.1|', name='gi|45478711|ref|NC_005816.1|', description='gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=[])
 ```
+have a look at the key attributes of this `SeqRecord` individually, starting with `seq` attribute which gives a `Seq` object:
+```python
+>>> record.seq
+Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
