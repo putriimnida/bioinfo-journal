@@ -695,6 +695,35 @@ have a look at the key attributes of this `SeqRecord` individually, starting wit
 >>> record.seq
 Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
 ```
+The identifiers and description:
+```python
+>>> record.id
+'gi|45478711|ref|NC_005816.1|'
+>>> record.name
+'gi|45478711|ref|NC_005816.1|'
+>>> record.description
+'gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+```
+On the above, the first word of the FASTA record's title line (after removing the greater symbol) is used for both the `id` and `name` attributes. The whole title line (after removing the greater than symbol) is used for the record description. This is deliberate, partly for backwards compatibility reasons, but it also makes sense if you have a FASTA file like this:
+```python
+>Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1
+TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGGGGGTAATCTGCTCTCC
+...
+```
+Note that none of the other annotation attributes get populated when reading a FASTA file:
+```python
+>>> record.dbxrefs
+[]
+>>> record.annotations
+{}
+>>> record.letter_annotations
+{}
+record.features
+[]
+```
+In this case our example FASTA file was from the NCBI, and they have a fairly well defined set of conventions for formatting their FASTA lines. This means it would be possible to parse this information and extract the GI number and accession for example. However, FASTA files from other sources vary, so this isn’t possible in general.
+
+## SeqRecord objects from GenBank files
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
