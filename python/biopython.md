@@ -724,6 +724,29 @@ record.features
 In this case our example FASTA file was from the NCBI, and they have a fairly well defined set of conventions for formatting their FASTA lines. This means it would be possible to parse this information and extract the GI number and accession for example. However, FASTA files from other sources vary, so this isn’t possible in general.
 
 ## SeqRecord objects from GenBank files
+Use `Bio.SeqIO` to read file NC_005816.gb. This file consists of Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1.
+```python
+>>> from Bio import SeqIO
+>>> record = SeqIO.read("NC_005816.gb", "genbank")
+>>> record
+SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+```
+
+```python
+record.seq
+Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+```
+
+The `name` comes from the LOCUS line, while the `id` includes the version suffix. The description comes from the DEFINITION line:
+```python
+>>> record.id
+'NC_005816.1'
+>>> record.name
+'NC_005816'
+>>> record.description
+'Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+```
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
