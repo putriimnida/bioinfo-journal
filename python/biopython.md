@@ -736,7 +736,6 @@ SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'
 record.seq
 Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
 ```
-
 The `name` comes from the LOCUS line, while the `id` includes the version suffix. The description comes from the DEFINITION line:
 ```python
 >>> record.id
@@ -746,6 +745,30 @@ The `name` comes from the LOCUS line, while the `id` includes the version suffix
 >>> record.description
 'Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
 ```
+GenBank files don't have any per-letter annotations:
+```python
+>>> record.letter_annotations
+{}
+```
+Most of the annotation information gets recorded in the `annotations` dictionary, for example:
+```python
+>>> len(record.annotations)
+13
+>>> record.annotations["source"]
+'Yersinia pestis biovar Microtus str. 91001'
+```
+The `dbxrefs` list gets populated from any PROJECT or DBLINK lines:
+```python
+>>> record.dbxrefs
+['Project:58037']
+```
+Finally, and perhaps most interestingly, all the entries in the features table (e.g. the genes or CDS features) get recorded as `SeqFeature` objects in the `features` list.
+```python
+>>> len(record.features)
+41
+```
+
+## Feature, location and position objects
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
