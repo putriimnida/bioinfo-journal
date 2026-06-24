@@ -769,6 +769,11 @@ Finally, and perhaps most interestingly, all the entries in the features table (
 ```
 
 ## Feature, location and position objects
+The key idea about each `SeqFeature` object is to describe a region on a parent sequence, typically on a `SeqRecord` object. That region is described with a location object, typically a range between two positions. The attributes of a SeqFeature are:
+.type
+This is a textual description of the type of feature (for example, this will be something like 'CDS' or 'gene').
+
+
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
