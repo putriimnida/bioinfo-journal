@@ -770,10 +770,20 @@ Finally, and perhaps most interestingly, all the entries in the features table (
 
 ## Feature, location and position objects
 The key idea about each `SeqFeature` object is to describe a region on a parent sequence, typically on a `SeqRecord` object. That region is described with a location object, typically a range between two positions. The attributes of a SeqFeature are:
-.type
+### .type
 This is a textual description of the type of feature (for example, this will be something like 'CDS' or 'gene').
 
+### .location
+The `SeqFeature` delegates much of its functionality to the location object, and includes a number of shortcut attributes for properties of the location:
+    .ref
+    shorthand for `.location.ref` - any (different) reference sequence the location is referring to. Usually just None.
+    .ref_db
+    shorthand for `.location.ref_db` - specifies the database any identifier in `.ref` refers to. Usually just None.
+    .strand
+    shorthand for `.location.strand` - the strand on the sequence that feature is located on. For double stranded nucleotide sequence this may either be 1 for the top strand, -1 for the bottom strand, 0 if the strand is important but is unknown, or `None` if it doesn't matter. This is None for proteins, or single stranded sequences.
 
+### .qualifiers
+    
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
