@@ -783,7 +783,13 @@ The `SeqFeature` delegates much of its functionality to the location object, and
     shorthand for `.location.strand` - the strand on the sequence that feature is located on. For double stranded nucleotide sequence this may either be 1 for the top strand, -1 for the bottom strand, 0 if the strand is important but is unknown, or `None` if it doesn't matter. This is None for proteins, or single stranded sequences.
 
 ### .qualifiers
-    
+This is a Python dictionary of additional information about the feature. For instance, a common key qualifier might be "evidence" and the value might be "computational (non-experiemental)". 
+
+### .sub_features
+This used to be used to represent features with complicated locations like 'joins' in GenBank/EMBL files. This has been deprecated with the introduction of the `CompoundLocation` object, and should now be ignored.
+
+
+## Positions and locations
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
