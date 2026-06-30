@@ -790,6 +790,14 @@ This used to be used to represent features with complicated locations like 'join
 
 
 ## Positions and locations
+### position
+This refers to a single position on a sequence, which may be fuzzy or not. For instance, 5, 20, `<100`, `>200` are all positions.
+
+### location
+a location is a region of sequenced bounded by some positions. For instance `5..20` (i.e. 5 to 20) is a location.
+
+
+## SimpleLocation object
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
