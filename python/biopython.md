@@ -798,6 +798,12 @@ a location is a region of sequenced bounded by some positions. For instance `5..
 
 
 ## SimpleLocation object
+Unless you work with eukaryotic genes, most `SeqFeature` locations are extremely simple, you just need start and end coordinates and a strand. That's essentially all the basic `SimpleLocation` object does.
+In practice, things can be more complicated. We have to handle compound locations made up of several regions, and the positions themselves may be fuzzy (inexact).
+
+
+## CompoundLocation object
+
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
