@@ -803,7 +803,10 @@ In practice, things can be more complicated. We have to handle compound location
 
 
 ## CompoundLocation object
+`CompoundLocation` is part of a restructuring of how complex locations made up of multiple regions are represented. The main usage is for handling 'join' locations in EMBL/GenBank files.
 
+
+## Fuzzy Positions
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
