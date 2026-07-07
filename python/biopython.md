@@ -807,6 +807,14 @@ In practice, things can be more complicated. We have to handle compound location
 
 
 ## Fuzzy Positions
+This is for more complicated positions. For instance, in the wet lab, you might do a dinucleotide priming experiment and discover that the start of mRNA transcript starts at one or two sites. Five classes to deal with them:
+### ExactPosition
+This represents a position which is specified as exact along the sequence. Get the position by looking at the `position` attribute of the object.
+
+### BeforePosition
+This represents a fuzzy position that occurs prior to some specified site. In GenBank/EMBL notation, this is represented something like `<13`, signifying that the real position is located somewhere less than 13. To get the specified upper boundary, look at the `position` attribute of the object.
+
+### AfterPosition
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
