@@ -815,6 +815,12 @@ This represents a position which is specified as exact along the sequence. Get t
 This represents a fuzzy position that occurs prior to some specified site. In GenBank/EMBL notation, this is represented something like `<13`, signifying that the real position is located somewhere less than 13. To get the specified upper boundary, look at the `position` attribute of the object.
 
 ### AfterPosition
+Contrary to `BeforePosition`, this class represents a position that occurs after some specified site. This is represented in GenBank as `>13`, and like `BeforePosition`, you get the boundary number by looking at the `position` attribute of the object.
+
+### WithinPosition
+Occasionally used for GenBank/EMBL locations, this class models a position which occurs somewhere between two specified nucleotides. In GenBank/EMBL notation, this would be represented as `(1.5)`, to represent that the position is somewhere within the range 1 to 5.
+
+### OneOfPosition
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
