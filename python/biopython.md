@@ -821,6 +821,13 @@ Contrary to `BeforePosition`, this class represents a position that occurs after
 Occasionally used for GenBank/EMBL locations, this class models a position which occurs somewhere between two specified nucleotides. In GenBank/EMBL notation, this would be represented as `(1.5)`, to represent that the position is somewhere within the range 1 to 5.
 
 ### OneOfPosition
+Occasionally used for GenBank/EMBL locations, this class deals with a position where several possible values exist, for instance if the start codon was unclear and there were two candidates for the start of the gene. Alternatively, that might be handled explicitly as two related gene features.
+
+### UnknownPosition
+This class deals with a position of unknown location. This is not used in GenBank/EMBL, but corresponds to the '?' feature coordinate used in UniProt.
+
+
+Example of creating a location with a fuzzy end points:
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
