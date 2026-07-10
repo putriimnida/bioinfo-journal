@@ -828,6 +828,36 @@ This class deals with a position of unknown location. This is not used in GenBan
 
 
 Example of creating a location with a fuzzy end points:
+```python
+>>> from Bio import SeqFeature
+>>> start_pos = SeqFeature.AfterPosition(5)
+>>> end_pos = SeqFeature.BetweenPosition(9, left=8, right=9)
+>>> my_location = SeqFeature.SimpleLocation(start_pos, end_pos)
+>>> print(my_location)
+[>5:(8^9)]
+>>> my_location.start
+AfterPosition(5)
+>>> print(my_location.start)
+>5
+>>> my_location.end
+BetweenPosition(9, left=8, right=9)
+>>> print(my_location.end)
+(8^9)
+>>> int(my_location.start)
+5
+>>> int(my_location.end)
+9
+>>> exact_location = SeqFeature.SimpleLocation(5, 9)
+>>> print(exact_location)
+[5:9]
+>>> exact_location.start
+ExactPosition(5)
+>>> int(exact_location.start)
+5
+```
+
+## Location testing
+
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
