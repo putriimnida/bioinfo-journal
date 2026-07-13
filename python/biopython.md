@@ -857,6 +857,20 @@ ExactPosition(5)
 ```
 
 ## Location testing
+Use the Python keyword `in` with a `SeqFeature` or location object to see if the base/residue for a parent coordinate is within the feature/location or not.
+```python
+>>> from Bio import SeqIO
+>>> my_snp = 4350
+>>> record = SeqIO.read("NC_005816.gb", "genbank")
+>>> for feature in record.features:
+...     if my_snp in feature:
+...        print("%s %s" % (feature.type, feature.qualifiers.get("db_xref")))
+...
+source ['taxon:229193']
+gene ['GeneID:2767712']
+CDS ['GI:45478716', 'GeneID:2767712']
+```
+Note that gene and CDS features from GenBank or EMBL files defined with joins are the union of the exons – they do not cover any introns.
 
 
 
