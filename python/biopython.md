@@ -873,6 +873,19 @@ CDS ['GI:45478716', 'GeneID:2767712']
 Note that gene and CDS features from GenBank or EMBL files defined with joins are the union of the exons – they do not cover any introns.
 
 
+## Sequence described by a feature or location
+Consider a (short) gene sequence with location `5:18` on the reverse strand, which in GenBank/EMBL notation using 1-based  counting would be `complement(6..18)`, like this:
+```python
+>>> from Bio.Seq import Seq
+>>> from Bio.SeqFeature import SeqFeature, SimpleLocation
+>>> seq = Seq("ACCGAGACGGCAAAGGCTAGCATAGGTATGAGACTTCCTTCCTGCCAGTGCTGAGGAACTGGGAGCCTAC"\
+)
+>>> feature = SeqFeature(SimpleLocation(5, 18, strand=-1), type="gene")
+>>> feature_seq = seq[feature.location.start : feature.location.end].reverse_complemen\
+t()
+>>> print(feature_seq)
+AGCCTTTGCCGTC
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
