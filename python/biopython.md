@@ -885,7 +885,44 @@ Consider a (short) gene sequence with location `5:18` on the reverse strand, whi
 t()
 >>> print(feature_seq)
 AGCCTTTGCCGTC
+>>> feature_seq = feature.extract(seq)
+>>> print(feature_seq)
+AGCCTTTGCCGTC
+print(len(feature_seq))
+13
+>>> print(len(feature))
+13
+>>> print(len(feature.location))
+13
 ```
+
+
+## Comparison
+```python
+>>> from Bio.Seq import Seq
+>>> from Bio.SeqRecord import SeqRecord
+>>> record1 = SeqRecord(Seq("ACGT"), id="test")
+>>> record2 = SeqRecord(Seq("ACGT"), id="test")
+>>> record1 == record2
+Traceback (most recent call last):
+  File "<python-input-4>", line 1, in <module>
+    record1 == record2
+  File "/Users/putriramadani/Library/Python/3.13/lib/python/site-packages/Bio/SeqRecord.py", line 904, in __eq__
+    raise NotImplementedError(_NO_SEQRECORD_COMPARISON)
+NotImplementedError: SeqRecord comparison is deliberately not implemented. Explicitly compare the attributes of interest.
+```
+As of Biopython 1.67, `SeqRecord` comparison like `record1 == record2` will instead raise an explicit error to avoid people being caught out by this.
+
+Instead check the attributes you are interested in, for example the identifier and the sequence:
+```python
+>>> record1.id == record2.id
+True
+>>> record1.seq == record2.seq
+True
+```
+
+## References
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
