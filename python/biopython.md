@@ -922,7 +922,36 @@ True
 ```
 
 ## References
+A fairly simple way of representing a Reference in Biopython is through `Bio.SeqFeature.Reference` class that stores the relevant information about a reference as attributes of an object.
+The attributes include `journal`, `title`, and `authors`. Additionally, it can also hold the `medline_id` and `pubmed_id` and a `comment` about the reference. A reference also has a `location` object so that it can specify a particular location on the sequence that the reference refers to. Any reference objects are stored as a list in the `SeqRecord` object's `annotations` dictionary under the key "references".
 
+
+## The format method
+The `format()` method of the `SeqRecord` class gives a string containing your record formatted using one of the output file formats supported by `Bio.SeqIO`, such as FASTA:
+```python
+>>> from Bio.Seq import Seq
+>>> from Bio.SeqRecord import SeqRecord
+>>> record = SeqRecord(
+... Seq(
+...         "MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD"
+...         "GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK"
+...         "NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM"
+...         "SSAC"
+...     ),
+...     id="gi|14150838|gb|AAK54648.1|AF376133_1",
+...     description="chalcone synthase [Cucumis sativus]",
+... )
+>>> print(record.format("fasta"))
+>gi|14150838|gb|AAK54648.1|AF376133_1 chalcone synthase [Cucumis sativus]
+MMYQQGCFAGGTVLRLAKDLAENNRGARVLVVCSEITAVTFRGPSETHLDSMVGQALFGD
+GAGAVIVGSDPDLSVERPLYELVWTGATLLPDSEGAIDGHLREVGLTFHLLKDVPGLISK
+NIEKSLKEAFTPLGISDWNSTFWIAHPGGPAILDQVEAKLGLKEEKMRATREVLSEYGNM
+SSAC
+```
+This `format` method takes a single mandatory argument, a lower case string which is supported by `Bio.SeqIO` as an output format. However, some of the file formats `Bio.SeqIO` can write to require more than one record (typically the case for multiple sequence alignment formats), and thus won't work via this `format()` method.
+
+
+## Slicing a SeqRecord
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
