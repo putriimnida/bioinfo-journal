@@ -952,6 +952,18 @@ This `format` method takes a single mandatory argument, a lower case string whic
 
 
 ## Slicing a SeqRecord
+Slice a `SeqRecord` to give a new `SeqRecord` covering just part of the sequence.
+```python
+>>> from Bio import SeqIO
+>>> record = SeqIO.read("NC_005816.gb", "genbank")
+>>> record
+SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+>>> len(record)
+9609
+>>> len(record.features)
+41
+```
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
