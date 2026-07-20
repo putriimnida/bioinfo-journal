@@ -962,6 +962,38 @@ SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'
 9609
 >>> len(record.features)
 41
+>>> print(record.features[20])
+type: gene
+location: [4342:4780](+)
+qualifiers:
+    Key: db_xref, Value: ['GeneID:2767712']
+    Key: gene, Value: ['pim']
+    Key: locus_tag, Value: ['YP_pPCP05']
+
+>>> print(record.features[21])
+type: CDS
+location: [4342:4780](+)
+qualifiers:
+    Key: codon_start, Value: ['1']
+    Key: db_xref, Value: ['GI:45478716', 'GeneID:2767712']
+    Key: gene, Value: ['pim']
+    Key: locus_tag, Value: ['YP_pPCP05']
+    Key: note, Value: ['similar to many previously sequenced pesticin immunity protein entries of Yersinia pestis plasmid pPCP, e.g. gi| 16082683|,ref|NP_395230.1| (NC_003132) , gi|1200166|emb|CAA90861.1| (Z54145 ) , gi|1488655| emb|CAA63439.1| (X92856) , gi|2996219|gb|AAC62543.1| (AF053945) , and gi|5763814|emb|CAB531 67.1| (AL109969)']
+    Key: product, Value: ['pesticin immunity protein']
+    Key: protein_id, Value: ['NP_995571.1']
+    Key: transl_table, Value: ['11']
+    Key: translation, Value: ['MGGGMISKLFCLALIFLSSSGLAEKNTYTAKDILQNLELNTFGNSLSHGIYGKQTTFKQTEFTNIKSNTKKHIALINKDNSWMISLKILGIKRDEYTVCFEDFSLIRPPTYVAIHPLLIKKVKSGNFIVVKEIKKSIPGCTVYYH']
+```
+
+slice the parent record from 4300 to 4800 (enough to include the `pim` gene/CDS), and see how many features:
+```python
+>>> sub_record = record[4300:4800]
+>>> sub_record
+SeqRecord(seq=Seq('ATAAATAGATTATTCCAAATAATTTATTTATGTAAGAACAGGATGGGAGGGGGA...TTA'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=[])
+>>> len(sub_record)
+500
+>>> len(sub_record.features)
+2
 ```
 
 
