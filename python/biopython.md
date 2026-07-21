@@ -996,6 +996,32 @@ SeqRecord(seq=Seq('ATAAATAGATTATTCCAAATAATTTATTTATGTAAGAACAGGATGGGAGGGGGA...TTA'
 2
 ```
 
+The sub-record has two features, the gene and CDS entries for `YP_pPCP05`:
+```python
+>>> print(sub_record.features[0])
+type: gene
+location: [42:480](+)
+qualifiers:
+    Key: db_xref, Value: ['GeneID:2767712']
+    Key: gene, Value: ['pim']
+    Key: locus_tag, Value: ['YP_pPCP05']
+
+>>> print(sub_record.features[1])
+type: CDS
+location: [42:480](+)
+qualifiers:
+    Key: codon_start, Value: ['1']
+    Key: db_xref, Value: ['GI:45478716', 'GeneID:2767712']
+    Key: gene, Value: ['pim']
+    Key: locus_tag, Value: ['YP_pPCP05']
+    Key: note, Value: ['similar to many previously sequenced pesticin immunity protein entries of Yersinia pestis plasmid pPCP, e.g. gi| 16082683|,ref|NP_395230.1| (NC_003132) , gi|1200166|emb|CAA90861.1| (Z54145 ) , gi|1488655| emb|CAA63439.1| (X92856) , gi|2996219|gb|AAC62543.1| (AF053945) , and gi|5763814|emb|CAB531 67.1| (AL109969)']
+    Key: product, Value: ['pesticin immunity protein']
+    Key: protein_id, Value: ['NP_995571.1']
+    Key: transl_table, Value: ['11']
+    Key: translation, Value: ['MGGGMISKLFCLALIFLSSSGLAEKNTYTAKDILQNLELNTFGNSLSHGIYGKQTTFKQTEFTNIKSNTKKHIALINKDNSWMISLKILGIKRDEYTVCFEDFSLIRPPTYVAIHPLLIKKVKSGNFIVVKEIKKSIPGCTVYYH']
+```
+Notice that their locations have been adjusted to reflect the new parent sequence.
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
