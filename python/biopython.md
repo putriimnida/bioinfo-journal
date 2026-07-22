@@ -1022,6 +1022,36 @@ qualifiers:
 ```
 Notice that their locations have been adjusted to reflect the new parent sequence.
 
+To know if the other annotation still applies to the seb-sequence or not, with the exception of the molecule type, the `.annotations` and `.dbxrefs` are omitted from the sub-record, and transfer any relevant information as appropriate.
+```python
+>>> sub_record.annotations
+{'molecule_type': 'DNA'}
+>>> sub_record.dbxrefs
+[]
+```
+To preserve other entries like the organism, beware of copying the entire annotations dictionary as in this case the partial sequence is no longer circular DNA, it is now linear:
+```python
+>>> sub_record.annotations["topology"] = "linear"
+
+>>> sub_record.id
+'NC_005816.1'
+>>> sub_record.name
+'NC_005816'
+>>> sub_record.description
+'Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+>>> sub_record.description = (
+    "Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, partial"
+)
+>>> print(sub_record.format("genbank")[:200] + "...")
+LOCUS       NC_005816                500 bp    DNA     linear   UNK 01-JAN-1980
+DEFINITION  Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, partial.
+ACCESSION   NC_005816
+VERSION     NC_0058...
+```
+
+## Adding SeqRecord objects
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
