@@ -1051,6 +1051,45 @@ VERSION     NC_0058...
 ```
 
 ## Adding SeqRecord objects
+Add `SeqRecord` objects together, giving a new `SeqRecord`.
+For instance, from other information the `TTT` should be only `TT`. We can make a new edited record by first slicing the SeqRecord before and after the “extra” third `T`.
+```python
+>>> from Bio import SeqIO
+>>> record = next(SeqIO.parse("example.fastq", "fastq"))
+>>> len(record)
+25
+>>> print(record.seq)
+CCCTTCTTGTCTTCAGCGTTTCTCC
+>>> print(record.letter_annotations["phred_quality"])
+[26, 26, 18, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 22, 26, 26, 26, 26, 26, 26, 26, 23, 23]
+
+>>> left = record[:20]
+>>> print(left.seq)
+CCCTTCTTGTCTTCAGCGTT
+>>> print(left.letter_annotations["phred_quality"])
+[26, 26, 18, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 22, 26, 26, 26, 26]
+>>> right = record[21:]
+>>> print(right.seq)
+CTCC
+>>> print(right.letter_annotations["phred_quality"])
+[26, 26, 23, 23]
+```
+Now add the two parts together:
+```python
+>>> edited = left + right
+>>> len(edited)
+24
+>>> print(edited.seq)
+CCCTTCTTGTCTTCAGCGTTCTCC
+>>> print(edited.letter_annotations["phred_quality"])
+[26, 26, 18, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 22, 26, 26, 26, 26, 26, 26, 23, 23]
+```
+Or make this shorter with just:
+```python
+edited = record[:20] + record[21:]
+```
+
+# Reverse-complementing SeqRecord objects
 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
