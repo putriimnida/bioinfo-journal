@@ -1090,7 +1090,17 @@ edited = record[:20] + record[21:]
 ```
 
 # Reverse-complementing SeqRecord objects
-
+The `SeqRecord` object's `reverse_complement` method takes a number of optional arguments corresponding to properties of the record. Setting these arguments to `True` means copy the old values, while `False` means drop the old values and use the default value, or alternatively provide the new desired value instead.
+```python
+>>> from Bio import SeqIO
+>>> rec = SeqIO.read("NC_005816.gb", "genbank")
+>>> print(rec.id, len(rec), len(rec.features), len(rec.dbxrefs), len(rec.annotations))
+NC_005816.1 9609 41 1 13
+>>> rc = rec.reverse_complement(id="TESTING")
+>>> print(rc.id, len(rc), len(rc.features), len(rc.dbxrefs), len(rc.annotations))
+TESTING 9609 41 0 0
+```
+notice how most of the annotation is dropped (but not the features)
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
