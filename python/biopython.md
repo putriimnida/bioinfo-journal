@@ -1089,7 +1089,7 @@ Or make this shorter with just:
 edited = record[:20] + record[21:]
 ```
 
-# Reverse-complementing SeqRecord objects
+## Reverse-complementing SeqRecord objects
 The `SeqRecord` object's `reverse_complement` method takes a number of optional arguments corresponding to properties of the record. Setting these arguments to `True` means copy the old values, while `False` means drop the old values and use the default value, or alternatively provide the new desired value instead.
 ```python
 >>> from Bio import SeqIO
@@ -1100,7 +1100,31 @@ NC_005816.1 9609 41 1 13
 >>> print(rc.id, len(rc), len(rc.features), len(rc.dbxrefs), len(rc.annotations))
 TESTING 9609 41 0 0
 ```
-notice how most of the annotation is dropped (but not the features)
+Notice how most of the annotation is dropped (but not the features)
+
+
+
+# Sequence Input/Output
+The built-in documentation `Bio.Seq`:
+```python
+>>> from Bio import SeqIO
+>>> help(SeqIO)
+```
+
+## Parsing or Reading Sequences
+The workhorse function `Bio.SeqIO.parse()` is used to read in sequence data as SeqRecord objects. This function expects two arguments:
+1. The first argument is a handle to read the data form, or a filename. A handle is typically a file opened for reading, but could be the output from a command line program, or data downloaded from the internet.
+2. The second argument. is a lowercase string specifying the sequence format. See `https://biopython.org/wiki/SeqIO` for a full listing of supported formats.
+
+### Reading Sequence Files
+In general `Bio.SeqIO.parse()` is used to read in sequence files as `SeqRecord` objects, and is typically used with a for loop like this:
+```python
+>>> from Bio import SeqIO
+>>> for seq_record in SeqIO.parse("ls_orchid.fasta", "fasta"):
+...     print(seq_record.id)
+...     print(repr(seq_record.seq))
+...     print(len(seq_record))
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
