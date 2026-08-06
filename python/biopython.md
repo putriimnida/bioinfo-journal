@@ -1125,6 +1125,14 @@ In general `Bio.SeqIO.parse()` is used to read in sequence files as `SeqRecord` 
 ...     print(repr(seq_record.seq))
 ...     print(len(seq_record))
 ```
+Another very common way to use a Python iterator is within a list comprehension (or a generator expression). For example, extracting a list of the record identifiers we can easily do this with the following list comprehension:
+```python
+>>> from Bio import SeqIO
+>>> identifiers = [seq_record.id for seq_record in SeqIO.parse("ls_orchid.gbk", "genbank")]
+>>> identifiers
+['Z78533.1', 'Z78532.1', 'Z78531.1', 'Z78530.1', 'Z78529.1', 'Z78527.1', ..., 'Z78439.1']
+```
+### Iterating over the records in a sequence file 
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
