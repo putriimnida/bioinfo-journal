@@ -1133,6 +1133,29 @@ Another very common way to use a Python iterator is within a list comprehension 
 ['Z78533.1', 'Z78532.1', 'Z78531.1', 'Z78530.1', 'Z78529.1', 'Z78527.1', ..., 'Z78439.1']
 ```
 ### Iterating over the records in a sequence file 
+The object returned by `Bio.SeqIO` is actually an iterator which returns `SeqRecord` objects. You get to see each record in turn, but once and only once. The plus point is that an iterator can save memory when dealing with large files.
+Instead of using a for loop, can also use the `next()` function on an iterator to step through the entries
+```python
+from Bio import SeqIO
+
+record_iterator = SeqIO.parse("ls_orchid.fasta", "fasta")
+
+first_record = next(record_iterator)
+print(first_record.id)
+print(first_record.description)
+
+second_record = next(record_iterator)
+print(second_record.id)
+print(second_record.description)
+```
+Note that if you try to use next() and there are no more results, you’ll get the special StopIteration exception. One special case to consider is when your sequence files have multiple records, but you only want the first one. In this situation the following code is very concise:
+```python
+from Bio import SeqIO
+
+first_record = next(SeqIO.parse("ls_orchid.gbk", "genbank"))
+```
+A word of warning here – using the next() function like this will silently ignore any additional records in the file. If your files have one and only one record, like some of the online examples later in this chapter, or a GenBank file for a single chromosome, then use the new Bio.SeqIO.read() function instead. This will check there are no extra unexpected records present.
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
