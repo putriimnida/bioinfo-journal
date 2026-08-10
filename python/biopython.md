@@ -1156,6 +1156,40 @@ first_record = next(SeqIO.parse("ls_orchid.gbk", "genbank"))
 ```
 A word of warning here – using the next() function like this will silently ignore any additional records in the file. If your files have one and only one record, like some of the online examples later in this chapter, or a GenBank file for a single chromosome, then use the new Bio.SeqIO.read() function instead. This will check there are no extra unexpected records present.
 
+### Getting a list of the records in a sequence file
+Very often we need to be able to access the records in any order. The Python `list` data type is perfect for this, and we can turn the record iterator into a list of `SeqRecord` objects using the built-in Python function `list()` like so:
+```python
+from Bio import SeqIO
+
+records = list(SeqIO.parse("ls_orchid.gbk", "genbank"))
+
+print("Found %i records" % len(records))
+
+print("The last record")
+last_record = records[-1]  # using Python's list tricks
+print(last_record.id)
+print(repr(last_record.seq))
+print(len(last_record))
+
+print("The first record")
+first_record = records[0]  # remember, Python counts from zero
+print(first_record.id)
+print(repr(first_record.seq))
+print(len(first_record))
+
+# giving:
+Found 94 records
+The last record
+Z78439.1
+Seq('CATTGTTGAGATCACATAATAATTGATCGAGTTAATCTGGAGGATCTGTTTACT...GCC')
+592
+The first record
+Z78533.1
+Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGATGAGACCGTGG...CGC')
+740
+```
+
+### Extracting data
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
