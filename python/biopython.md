@@ -1190,6 +1190,36 @@ Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGATGAGACCGTGG...CGC')
 ```
 
 ### Extracting data
+```python
+from Bio import SeqIO
+
+record_iterator = SeqIO.parse("ls_orchid.gbk", "genbank")
+first_record = next(record_iterator)
+print(first_record)
+
+ID: Z78533.1
+Name: Z78533
+Description: C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.
+Number of features: 5
+/sequence_version=1
+/source=Cypripedium irapeanum
+/taxonomy=['Eukaryota', 'Viridiplantae', 'Streptophyta', ..., 'Cypripedium']
+/keywords=['5.8S ribosomal RNA', '5.8S rRNA gene', ..., 'ITS1', 'ITS2']
+/references=[...]
+/accessions=['Z78533']
+/data_file_division=PLN
+/date=30-NOV-2006
+/organism=Cypripedium irapeanum
+/gi=2765658
+Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGATGAGACCGTGG...CGC')
+```
+
+using annotations dictionary
+```python
+print(first_record.annotations)
+print(first_record.annotations.keys())
+print(first_record.annotations.values())
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
