@@ -1221,5 +1221,18 @@ print(first_record.annotations.keys())
 print(first_record.annotations.values())
 ```
 
+### Modifying data
+The attributes of a `SeqRecord` can be modified directly, for example:
+```python
+from Bio import SeqIO
+record_iterator = SeqIO.parse("ls_orchid.fasta", "fasta")
+first_record = next(record_iterator)
+first_record.id
+'gi|2765658|emb|Z78533.1|CIZ78533'
+first_record.id = "new_id"
+first_record.id
+'new_id'
+```
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
