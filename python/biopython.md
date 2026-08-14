@@ -1234,5 +1234,40 @@ first_record.id
 'new_id'
 ```
 
+## Parsing sequences from compressed files
+```python
+>>> from Bio import SeqIO
+>>> print(sum(len(r) for r in SeqIO.parse("ls_orchid.gbk", "gb")))
+67518
+
+>>> from Bio import SeqIO
+>>> with open("ls_orchid.gbk") as handle:
+...    print(sum(len(r) for r in SeqIO.parse(handle, "gb")))
+...
+67518
+
+>>> from Bio import SeqIO
+>>> handle = open("ls_orchid.gbk")
+>>> print(sum(len(r) for r in SeqIO.parse(handle, "gb")))
+67518
+>>> handle.close()
+
+>>> import gzip
+>>> from Bio import SeqIO
+>>> with gzip.open("ls_orchid.gbk.gz", "rt") as handle:
+...    print(sum(len(r) for r in SeqIO.parse(handle, "gb")))
+...
+67518
+
+>>> import bz2
+>>> from Bio import SeqIO
+>>> with bz2.open("ls_orchid.gbk.bz2", "rt") as handle:
+...    print(sum(len(r) for r in SeqIO.parse(handle, "gb")))
+...
+67518
+```
+
+## Parsing sequences from the net
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
