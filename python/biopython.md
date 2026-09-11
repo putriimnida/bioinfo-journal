@@ -1268,6 +1268,20 @@ first_record.id
 ```
 
 ## Parsing sequences from the net
+### Parsing GenBank records from the net
+```python
+from Bio import Entrez
+from Bio import SeqIO
+
+Entrez.email = "A.N.Other@example.com"
+with Entrez.efetch(
+    db="nucleotide", rettype="fasta", retmode="text", id="6273291"
+) as handle:
+    seq_record = SeqIO.read(handle, "fasta")
+print("%s with %i features" % (seq_record.id, len(seq_record.features)))
+
+# gi|6273291|gb|AF191665.1|AF191665 with 0 features
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
