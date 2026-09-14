@@ -1283,5 +1283,30 @@ print("%s with %i features" % (seq_record.id, len(seq_record.features)))
 # gi|6273291|gb|AF191665.1|AF191665 with 0 features
 ```
 
+### Parsing SwissProt sequences from the net
+```python
+from Bio import ExPASy
+from Bio import SeqIO
+
+with ExPASy.get_sprot_raw("O23729") as handle:
+    seq_record = SeqIO.read(handle, "swiss")
+print(seq_record.id)
+print(seq_record.name)
+print(seq_record.description)
+print(repr(seq_record.seq))
+print("Length %i" % len(seq_record))
+print(seq_record.annotations["keywords"])
+
+
+# O23729
+# CHS3_BROFI
+# RecName: Full=Chalcone synthase 3; EC=2.3.1.74; AltName: Full=Naringenin-chalcone synthase 3;
+# Seq('MAPAMEEIRQAQRAEGPAAVLAIGTSTPPNALYQADYPDYYFRITKSEHLTELK...GAE')
+# Length 394
+# ['Acyltransferase', 'Flavonoid biosynthesis', 'Transferase']
+```
+
+### Sequence files as Dictionaries
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
