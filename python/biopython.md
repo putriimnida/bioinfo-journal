@@ -1306,7 +1306,29 @@ print(seq_record.annotations["keywords"])
 # ['Acyltransferase', 'Flavonoid biosynthesis', 'Transferase']
 ```
 
-### Sequence files as Dictionaries
+## Sequence files as Dictionaries
+```python
+>>> from Bio import SeqIO
+>>> handle = open("sequence.bigendian.2bit", "rb")
+>>> records = SeqIO.parse(handle, "twobit")
+>>> records.keys()
+dict_keys(['seq11111', 'seq222', 'seq3333', 'seq4', 'seq555', 'seq6'])
+>>> records["seq222"]
+SeqRecord(seq=Seq('TTGATCGGTGACAAATTTTTTACAAAGAACTGTAGGACTTGCTACTTCTCCCTC...ACA'), id='seq222', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+>>> records["seq222"].seq
+Seq('TTGATCGGTGACAAATTTTTTACAAAGAACTGTAGGACTTGCTACTTCTCCCTC...ACA')
+>>> handle.close() #handle.close() is used to release operating system resources, free file descriptors or connections, and prevent resource leaks after you finish using a file or database connection
+>>> records["seq222"].seq
+Traceback (most recent call last):
+...
+ValueError: cannot retrieve sequence: file is closed
+```
+For other file formats, `Bio.SeqIO` provides three related functions module which allow dictionary like random access to a multi-sequence file. There is a trade off here between flexibilty and memory usage. In summary:
+1. `Bio.SeqIO.to_dict()` is the most flexible but also the most memory demanding option. This is a helper function to build a normal Python `dictionary` with each entry held as a `SeqRecord` object in memory and allows you to modify the records.
+2. `Bio.SeqIO.index()` is a useful middle ground, acting like a read only dictionary and parsing sequences into `SeqRecord` objects on demand.
+3. `Bio.SeqIO.index_db()` also acts like a read only dictionary buts stores the identifiers and file offsets in a file on disk (as SQLite3 database), meaning it has very low memory requirements, but will be a little bit slower.
+
+### Sequence files as Dictionaries in memory
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
