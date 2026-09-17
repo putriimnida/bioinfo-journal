@@ -1328,7 +1328,26 @@ For other file formats, `Bio.SeqIO` provides three related functions module whic
 2. `Bio.SeqIO.index()` is a useful middle ground, acting like a read only dictionary and parsing sequences into `SeqRecord` objects on demand.
 3. `Bio.SeqIO.index_db()` also acts like a read only dictionary buts stores the identifiers and file offsets in a file on disk (as SQLite3 database), meaning it has very low memory requirements, but will be a little bit slower.
 
-### Sequence files as Dictionaries in memory
+### Sequence files as Dictionaries - in memory
+Use the function `Bio.SeqIO.to_dict()` to make a SeqRecord dictionary (in memory). By default this will use each record's identifier (i.e. the `.id` attribute) as the key. 
+```python
+>>> from Bio import SeqIO
+>>> orchid_dict = SeqIO.to_dict(SeqIO.parse("ls_orchid.gbk", "genbank"))
+>>> len(orchid_dict)
+94
+>>> list(orchid_dict.keys())
+['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
+>>> list(orchid_dict.values())  # to look at all the records at once
+
+# access a single `SeqRecord` object via the keys and manipulate the object as normal:
+seq_record = orchid_dict["Z78475.1"]
+print(seq_record.description)
+P.supardii 5.8S rRNA gene and ITS1 and ITS2 DNA
+seq_record.seq
+Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGTTGAGATCACAT...GGT')
+```
+
+### Specifying the dictionary keys
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
