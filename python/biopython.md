@@ -1348,6 +1348,36 @@ Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGTTGAGATCACAT...GGT')
 ```
 
 ### Specifying the dictionary keys
+using the same code as above, but for the FASTA file instead:
+```python
+>>> from Bio import SeqIO
+
+>>> orchid_dict = SeqIO.to_dict(SeqIO.parse("ls_orchid.fasta", "fasta"))
+>>> print(orchid_dict.keys())
+['gi|2765596|emb|Z78471.1|PDZ78471', 'gi|2765646|emb|Z78521.1|CCZ78521', ...
+ ..., 'gi|2765613|emb|Z78488.1|PTZ78488', 'gi|2765583|emb|Z78458.1|PHZ78458']
+
+>>> def get_accession(record):
+        """Given a SeqRecord, return the accession number as a string.
+
+        e.g. "gi|2765613|emb|Z78488.1|PTZ78488" -> "Z78488.1"
+        """
+        parts = record.id.split("|")
+        assert len(parts) == 5 and parts[0] == "gi" and parts[2] == "emb"
+        return parts[3]
+
+# give this function to the `SeqIO.to_dict()` function to use in building the dictionary:
+>>> from Bio import SeqIO
+
+>>> orchid_dict = SeqIO.to_dict(
+        SeqIO.parse("ls_orchid.fasta", "fasta"), key_function=get_accession
+)
+>>> print(orchid_dict.keys())
+
+# the new dictionary keys
+>>> print(orchid_dict.keys())
+['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
