@@ -1379,5 +1379,34 @@ using the same code as above, but for the FASTA file instead:
 ['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
 ```
 
+### Indexing a dictionary using the SEGUID checksum
+SEGUID (SEquence Globally Unique IDentifier) checksum: a stable, cryptographic hash string used to uniquely identify and link biological sequences—such as DNA, RNA, and proteins—across different databases.
+```python
+>>> from Bio import SeqIO
+>>> from Bio.SeqUtils.CheckSum import seguid
+
+>>> for record in SeqIO.parse("ls_orchid.gbk", "genbank"):
+        print(record.id, seguid(record.seq))
+
+Z78533.1 JUEoWn6DPhgZ9nAyowsgtoD9TTo
+Z78532.1 MN/s0q9zDoCVEEc+k/IFwCNF2pY
+...
+Z78439.1 H+JfaShya/4yyAj7IbMqgNkxdxQ
+
+
+# We cannot use the seguid() function directly because it expects to be given a Seq object (or a string)
+>>> from Bio import SeqIO
+>>> from Bio.SeqUtils.CheckSum import seguid
+>>> seguid_dict = SeqIO.to_dict(
+...     SeqIO.parse("ls_orchid.gbk", "genbank"), lambda rec: seguid(rec.seq)
+...)
+>>> record = seguid_dict["MN/s0q9zDoCVEEc+k/IFwCNF2pY"]
+>>> print(record.id)  #will retrieve Z78532.1
+Z78532.1
+>>> print(record.description)
+C.californicum 5.8S rRNA gene and ITS1 and ITS2 DNA
+
+```
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
