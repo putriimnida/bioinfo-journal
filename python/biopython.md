@@ -1408,5 +1408,27 @@ C.californicum 5.8S rRNA gene and ITS1 and ITS2 DNA
 
 ```
 
+### Sequence files as dictionaries - indexed files
+`Bio.SeqIO.to_dict()` is very flexible but it holds everything in memory and limited by computer's RAM. So it will work only on small to medium files.
+For larger files, consider `Bio.SeqIO.index` that just records where each record is within the file. When you ask for a particular record, it then parses it on demand.
+```python
+>>> from Bio import SeqIO
+>>> orchid_dict = SeqIO.index("ls_orchid.gbk", "genbank")
+>>> len(orchid_dict)
+94
+
+>>> orchid_dict.keys()
+['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
+
+>>> seq_record = orchid_dict["Z78475.1"]
+>>> print(seq_record.description)
+P.supardii 5.8S rRNA gene and ITS1 and ITS2 DNA
+>>> seq_record.seq
+Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGTTGAGATCACAT...GGT')
+>>> orchid_dict.close()
+```
+
+#### Specifying the dictionary keys
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
