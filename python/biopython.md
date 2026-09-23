@@ -1429,6 +1429,24 @@ Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGTTGAGATCACAT...GGT')
 ```
 
 #### Specifying the dictionary keys
+```python
+def get_acc(identifier):
+    """Given a SeqRecord identifier string, return the accession number as a string.
+
+    e.g. "gi|2765613|emb|Z78488.1|PTZ78488" -> "Z78488.1"
+    """
+    parts = identifier.split("|")
+    assert len(parts) == 5 and parts[0] == "gi" and parts[2] == "emb"
+    return parts[3]
+
+# Then we can give this function to the Bio.SeqIO.index() function to use in building the dictionary:
+>>> from Bio import SeqIO
+>>> orchid_dict = SeqIO.index("ls_orchid.fasta", "fasta", key_function=get_acc)
+>>> print(orchid_dict.keys())
+['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
+```
+
+#### Getting the raw data for a record
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
