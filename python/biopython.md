@@ -1447,6 +1447,17 @@ def get_acc(identifier):
 ```
 
 #### Getting the raw data for a record
+```python
+# download the whole of UniProt in the plain text SwissPort file format from FTP site (ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.dat.gz)
+# uncompressed it as the file uniprot_sprot.dat
+# extract just a few records from it:
+
+>>> from Bio import SeqIO
+>>> uniprot = SeqIO.index("uniprot_sprot.dat", "swiss")
+>>> with open("selected.dat", "wb") as out_handle:
+    for acc in ["P33487", "P19801", "P13689", "Q8JZQ5", "Q9TRC7"]:
+        out_handle.write(uniprot.get_raw(acc))
+```
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
