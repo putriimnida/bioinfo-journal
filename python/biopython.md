@@ -1459,5 +1459,22 @@ def get_acc(identifier):
         out_handle.write(uniprot.get_raw(acc))
 ```
 
+### Sequence files as Dictionaries - Database indexed files
+```python
+# The glob module finds pathnames using pattern matching rules similar to the Unix shell. No tilde expansion is done, but *, ?, and character ranges expressed with [] will be correctly matched.
+
+>>> import glob
+>>> from Bio import SeqIO
+>>> files = glob.glob("gbvrl*.seq")
+>>> print("%i files to index" % len(files))
+4
+>>> gb_vrl = SeqIO.index_db("gbvrl.idx", files, "genbank")
+>>> print("%i sequences indexed" % len(gb_vrl))
+272960 sequences indexed
+
+>>> print(gb_vrl["AB811634.1"].description)
+Equine encephalosis virus NS3 gene, complete cds, isolate: Kimron1.
+```
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
