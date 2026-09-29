@@ -30,10 +30,15 @@ rclone size :sftp:FolderName --sftp-host=na.export.atomx.nanostring.com --sftp-u
 # Total size: xxxx GiB
 
 
-# --- on another terminal, download the exported data to personal computer:
+# --- on another terminal, download the exported data to local computer:
 cd ~/YourComputer
 caffeinate -i sftp -o User="yourusername" na.export.atomx.nanostring.com
 sftp> get -r FolderName
+
+# the data download typically takes a few hours depends on the size.
+# if you have to close your terminal, and resume the download later, use the command below.
+# the -a makes it skip files that already finished and continue partial ones instead of starting over.
+sftp> get -ar FolderName
 ```
 
 Note: If you aim to transfer data to High-Performance Computing cluster, SFTP can be accessed on login node, but not on compute node. So, if you wanted to transfer the data directly to compute node, ask HPC manager for help and inform them the data size to make sure you have enough room to receive it.
