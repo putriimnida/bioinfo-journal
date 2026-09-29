@@ -1379,5 +1379,102 @@ using the same code as above, but for the FASTA file instead:
 ['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
 ```
 
+### Indexing a dictionary using the SEGUID checksum
+SEGUID (SEquence Globally Unique IDentifier) checksum: a stable, cryptographic hash string used to uniquely identify and link biological sequences—such as DNA, RNA, and proteins—across different databases.
+```python
+>>> from Bio import SeqIO
+>>> from Bio.SeqUtils.CheckSum import seguid
+
+>>> for record in SeqIO.parse("ls_orchid.gbk", "genbank"):
+        print(record.id, seguid(record.seq))
+
+Z78533.1 JUEoWn6DPhgZ9nAyowsgtoD9TTo
+Z78532.1 MN/s0q9zDoCVEEc+k/IFwCNF2pY
+...
+Z78439.1 H+JfaShya/4yyAj7IbMqgNkxdxQ
+
+
+# We cannot use the seguid() function directly because it expects to be given a Seq object (or a string)
+>>> from Bio import SeqIO
+>>> from Bio.SeqUtils.CheckSum import seguid
+>>> seguid_dict = SeqIO.to_dict(
+...     SeqIO.parse("ls_orchid.gbk", "genbank"), lambda rec: seguid(rec.seq)
+...)
+>>> record = seguid_dict["MN/s0q9zDoCVEEc+k/IFwCNF2pY"]
+>>> print(record.id)  #will retrieve Z78532.1
+Z78532.1
+>>> print(record.description)
+C.californicum 5.8S rRNA gene and ITS1 and ITS2 DNA
+
+```
+
+### Sequence files as dictionaries - indexed files
+`Bio.SeqIO.to_dict()` is very flexible but it holds everything in memory and limited by computer's RAM. So it will work only on small to medium files.
+For larger files, consider `Bio.SeqIO.index` that just records where each record is within the file. When you ask for a particular record, it then parses it on demand.
+```python
+>>> from Bio import SeqIO
+>>> orchid_dict = SeqIO.index("ls_orchid.gbk", "genbank")
+>>> len(orchid_dict)
+94
+
+>>> orchid_dict.keys()
+['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
+
+>>> seq_record = orchid_dict["Z78475.1"]
+>>> print(seq_record.description)
+P.supardii 5.8S rRNA gene and ITS1 and ITS2 DNA
+>>> seq_record.seq
+Seq('CGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTGTTGAGATCACAT...GGT')
+>>> orchid_dict.close()
+```
+
+#### Specifying the dictionary keys
+```python
+def get_acc(identifier):
+    """Given a SeqRecord identifier string, return the accession number as a string.
+
+    e.g. "gi|2765613|emb|Z78488.1|PTZ78488" -> "Z78488.1"
+    """
+    parts = identifier.split("|")
+    assert len(parts) == 5 and parts[0] == "gi" and parts[2] == "emb"
+    return parts[3]
+
+# Then we can give this function to the Bio.SeqIO.index() function to use in building the dictionary:
+>>> from Bio import SeqIO
+>>> orchid_dict = SeqIO.index("ls_orchid.fasta", "fasta", key_function=get_acc)
+>>> print(orchid_dict.keys())
+['Z78484.1', 'Z78464.1', 'Z78455.1', 'Z78442.1', 'Z78532.1', 'Z78453.1', ..., 'Z78471.1']
+```
+
+#### Getting the raw data for a record
+```python
+# download the whole of UniProt in the plain text SwissPort file format from FTP site (ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.dat.gz)
+# uncompressed it as the file uniprot_sprot.dat
+# extract just a few records from it:
+
+>>> from Bio import SeqIO
+>>> uniprot = SeqIO.index("uniprot_sprot.dat", "swiss")
+>>> with open("selected.dat", "wb") as out_handle:
+    for acc in ["P33487", "P19801", "P13689", "Q8JZQ5", "Q9TRC7"]:
+        out_handle.write(uniprot.get_raw(acc))
+```
+
+### Sequence files as Dictionaries - Database indexed files
+```python
+# The glob module finds pathnames using pattern matching rules similar to the Unix shell. No tilde expansion is done, but *, ?, and character ranges expressed with [] will be correctly matched.
+
+>>> import glob
+>>> from Bio import SeqIO
+>>> files = glob.glob("gbvrl*.seq")
+>>> print("%i files to index" % len(files))
+4
+>>> gb_vrl = SeqIO.index_db("gbvrl.idx", files, "genbank")
+>>> print("%i sequences indexed" % len(gb_vrl))
+272960 sequences indexed
+
+>>> print(gb_vrl["AB811634.1"].description)
+Equine encephalosis virus NS3 gene, complete cds, isolate: Kimron1.
+```
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
