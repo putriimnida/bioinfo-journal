@@ -1,0 +1,42 @@
+---
+title: "CosMx_SMI_best_practices"
+author: "Putri Ramadani"
+date: "2026-09-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Export Data from AtoMx SIP 
+- On AtoMx SIP, select Study -> Study Data.
+- Check all the files you wanted to export, and choose SFTP or S3 (AWS) for data download. Please keep in mind that it takes a few hours until these large files are ready to download.
+- Download the exported data using SFTP information that AtoMx SIP gave you.
+```{bash}
+# --- on terminal, view the export folders: ---
+sftp -o User="yourusername" na.export.atomx.nanostring.com
+sftp> ls -lh
+# Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+# enter pasword
+
+# check the size of the data: 
+brew install rclone
+read -s -p "YourAtoMxPassword" PW; echo
+rclone size :sftp:FolderName --sftp-host=na.export.atomx.nanostring.com --sftp-user="yourusername" --sftp-pass=$(rclone obscure "$PW")
+# output:
+# Total objects: xxxxk
+# Total size: xxxx GiB
+
+
+# --- on another terminal, download the exported data to personal computer:
+cd ~/YourComputer
+caffeinate -i sftp -o User="yourusername" na.export.atomx.nanostring.com
+sftp> get -r FolderName
+```
+
+Note: If you aim to transfer data to High-Performance Computing cluster, SFTP can be accessed on login node, but not on compute node. So, if you wanted to transfer the data directly to compute node, ask HPC manager for help and inform them the data size to make sure you have enough room to receive it.
+
+
+
