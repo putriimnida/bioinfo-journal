@@ -1476,5 +1476,18 @@ def get_acc(identifier):
 Equine encephalosis virus NS3 gene, complete cds, isolate: Kimron1.
 ```
 
+#### Getting the raw data for a record
+Using `Bio.SeqIO.index()` to get the raw bytes of each record
+```python
+>>> print(gb_vrl.get_raw("AB811634.1"))
+LOCUS       AB811634                 723 bp    RNA     linear   VRL 17-JUN-2015
+DEFINITION  Equine encephalosis virus NS3 gene, complete cds, isolate: Kimron1.
+ACCESSION   AB811634
+...
+//
+```
+
+#### Indexing compressed files
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
