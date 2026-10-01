@@ -13,7 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 # Export Data from AtoMx SIP 
 - On AtoMx SIP, select Study -> Study Data.
 - Check all the files you wanted to export, and choose SFTP or S3 (AWS) for data download. Please keep in mind that it takes a few hours until these large files are ready to download.
-- Download the exported data using SFTP information that AtoMx SIP gave you.
+- Download the exported data using SFTP/S3 information that AtoMx SIP gave you.
+
+Example for downloading the exported data using SFTP:
 ```{bash}
 # --- on terminal, view the export folders: ---
 sftp -o User="yourusername" na.export.atomx.nanostring.com
@@ -35,6 +37,7 @@ cd ~/YourComputer
 caffeinate -i sftp -o User="yourusername" na.export.atomx.nanostring.com
 sftp> get -r FolderName
 
+# caffeinate is a terminal-based command, which stops your Mac going to sleep until the command is stopped. Ref: https://www.theapplegeek.co.uk/blog/caffeinate 
 # the data download typically takes a few hours depends on the size.
 # if you have to close your terminal, and resume the download later, use the command below.
 # the -a makes it skip files that already finished and continue partial ones instead of starting over.
