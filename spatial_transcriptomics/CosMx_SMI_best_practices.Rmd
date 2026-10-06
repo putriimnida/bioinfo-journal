@@ -47,4 +47,8 @@ sftp> get -ar FolderName
 Note: If you aim to transfer data to High-Performance Computing cluster, SFTP can be accessed on login node, but not on compute node. So, if you wanted to transfer the data directly to compute node, ask HPC manager for help and inform them the data size to make sure you have enough room to receive it.
 
 
+# Cell segmentation on AtoMx SIP
+- Cell segmentation on AtoMx SIP is performed before creating a study.
+- The process takes around 30-40 minutes to complete, no need to stay on AtoMx while cell segmentation is loading. 
+
 
