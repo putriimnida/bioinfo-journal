@@ -50,5 +50,7 @@ Note: If you aim to transfer data to High-Performance Computing cluster, SFTP ca
 # Cell segmentation on AtoMx SIP
 - Cell segmentation on AtoMx SIP is performed before creating a study.
 - The process takes around 30-40 minutes to complete, no need to stay on AtoMx while cell segmentation is loading. 
+- If you're not satisfied with cell segmentation on AtoMx, alternatively you can perform cell segmentation off AtoMx using [cellpose-SAM](https://github.com/mouseland/cellpose). The process can take a few days with GPU, and may take a week or more without GPU. 
+
 
 
