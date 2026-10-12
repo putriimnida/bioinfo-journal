@@ -1488,6 +1488,37 @@ ACCESSION   AB811634
 ```
 
 #### Indexing compressed files
+Indexing a sequence file can be quite large, so you may want to compress it on disk. BGZF (Blocked GNU Zip Format) can be very helpful compared to file formats like gzip and bzip2. This is a variant of gzip (and can be decompressed using standard gzip tools) popularized by the BAM file format, samtools, and tabix.
+The `Bio.SeqIO.index()` and `Bio.SeqIO.index_db()` can both be used with BGZF compressed files. For example, if you started with an uncompressed GenBank file:
+```python
+>>> from Bio import SeqIO
+>>> orchid_dict = SeqIO.index("ls_orchid.gbk", "genbank")
+>>> len(orchid_dict)
+94
+>>> orchid_dict.close()
+```
+You could compress this (while keeping the original file) at the command line using the following command 
+```
+$ bgzip -c ls_orchid.gbk > ls_orchid.gbk.bgz
+```
+Use the compressed file in exactly the same way:
+```python
+from Bio import SeqIO
+orchid_dict = SeqIO.index("ls_orchid.gbk.bgz", "genbank")
+len(orchid_dict)
+94
+orchid_dict.close()
+```
+or
+```python
+from Bio import SeqIO
+orchid_dict = SeqIO.index_db("ls_orchid.gbk.bgz.idx", "ls_orchid.gbk.bgz", "genbank")
+len(orchid_dict)
+94
+orchid_dict.close()
+```
+The `SeqIO` indexing automatically detects the BGZF compression. Note that you can’t use the same index file for the uncompressed and compressed files.
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
