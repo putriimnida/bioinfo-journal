@@ -1519,6 +1519,10 @@ orchid_dict.close()
 ```
 The `SeqIO` indexing automatically detects the BGZF compression. Note that you can’t use the same index file for the uncompressed and compressed files.
 
+#### Discussion
+The method to use depends on your goal and how much data you are dealing with. In general, picking `Bio.SeqIO.index()` is a good starting point. If you're working with millions of records, multiple files, or repeated analysis, then use `Bio.SeqIO.index_db()`.
+
+
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
