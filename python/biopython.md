@@ -1521,8 +1521,13 @@ The `SeqIO` indexing automatically detects the BGZF compression. Note that you c
 
 #### Discussion
 The method to use depends on your goal and how much data you are dealing with. In general, picking `Bio.SeqIO.index()` is a good starting point. If you're working with millions of records, multiple files, or repeated analysis, then use `Bio.SeqIO.index_db()`.
+`Bio.SeqIO.to_dict()` offers flexibility through `SeqRecords` despite its high memory needs. In addition to the downside of high memory consumption, indexing can also take longer because all the records must be fully parsed.
+Both `Bio.SeqIO.index()` and `Bio.SeqIO.index_db()` only prase records on demand. When indexing, they scan the file once looking for the start of each record and do as little work as possible to extract the identifier. 
 
-
+The main takeaway:
+- to_dict(): Read everything and keep all the parsed records ready to use and manipulate.
+- index(): Build an in-memory lookup index, then parse records when you request them.
+- index_db(): Build a persistent lookup index in a database, then parse records when you request them.
 
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
