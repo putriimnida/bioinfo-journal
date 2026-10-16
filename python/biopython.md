@@ -1529,5 +1529,11 @@ The main takeaway:
 - index(): Build an in-memory lookup index, then parse records when you request them.
 - index_db(): Build a persistent lookup index in a database, then parse records when you request them.
 
+Reasons to choose `Bio.SeqIO.index()` over `Bio.SeqIO.index_db()` include:<br>
+- Faster to build the index (more noticeable in simple file formats).
+- Slightly faster access as `SeqRecord` objects.
+- Can use any immutable Python object as the dictionary keys (e.g. a tuple of strings, or a frozen set) not just strings.
+- Don't need to worry about the index database being out of date if the sequence file being indexed has changed.
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
