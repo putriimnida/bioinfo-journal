@@ -1535,5 +1535,11 @@ Reasons to choose `Bio.SeqIO.index()` over `Bio.SeqIO.index_db()` include:<br>
 - Can use any immutable Python object as the dictionary keys (e.g. a tuple of strings, or a frozen set) not just strings.
 - Don't need to worry about the index database being out of date if the sequence file being indexed has changed.
 
+Reasons to choose `Bio.SeqIO.index_db()` over `Bio.SeqIO.index()` include:
+- Not memory limited.
+- It can be reused because the index is kept on disk. Although building the index database file takes longer, if you have a script which will be rerun on the same datafiles in future, this could save time in long run.
+- Indexing multiple files together.
+- The `get_raw()` method can be much faster, since for most file formats the length of each record is stored as well as its offset.
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
