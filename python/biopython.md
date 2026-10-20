@@ -1541,5 +1541,13 @@ Reasons to choose `Bio.SeqIO.index_db()` over `Bio.SeqIO.index()` include:
 - Indexing multiple files together.
 - The `get_raw()` method can be much faster, since for most file formats the length of each record is stored as well as its offset.
 
+## Writing Sequence Files
+`Bio.SeqIO.write()` is a function taking three arguments: 
+- some `SeqRecord` objects
+- a handle or filename to write to
+- a sequence format.
+Suppose you wanted to know how many records the `Bio.SeqIO.write()` function write to the handle? If your records were in a list you could just use `len(my_records)`, however you can't do that when your records come from a generator/iterator. The `Bio.SeqIO.write()` function returns the number of `SeqRecord` objects written to the file.
+If you use `Bio.SeqIO.write()` function to write to a file that already exists, the old file will be overwritten without any warning.
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
