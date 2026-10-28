@@ -1549,5 +1549,20 @@ Reasons to choose `Bio.SeqIO.index_db()` over `Bio.SeqIO.index()` include:
 Suppose you wanted to know how many records the `Bio.SeqIO.write()` function write to the handle? If your records were in a list you could just use `len(my_records)`, however you can't do that when your records come from a generator/iterator. The `Bio.SeqIO.write()` function returns the number of `SeqRecord` objects written to the file.
 If you use `Bio.SeqIO.write()` function to write to a file that already exists, the old file will be overwritten without any warning.
 
+### Low Level FASTA and FASTQC parsers
+When dealing with large high-throughput FASTA or FASTQ sequencing files where speed matters, working with low-level `SimpleFastaParser` or `FastqGenerator` is often more practical than `Bio.SeqIO.parse`. When parsing FASTA files, internally `Bio.SeqIO.parse()` calls the low level `SimpleFastaParser` with file handle. This can be used directly, it iterates over the file handle returning each record as a tuple of two strings, the title line (everything after the `>` character) and the sequence (as a plain string):
+```python
+>>> from Bio.SeqIO.FastaIO import SimpleFastaParser
+>>> count = 0
+>>> total_len = 0
+>>> with open("ls_orchid.fasta") as in_handle:
+...    for title, seq in SimpleFastaParser(in_handle):
+...        count += 1
+...        total_len += len(seq)
+...
+>>> print("%i records with total sequence length %i" % (count, total_len))
+94 records with total sequence length 67518
+```
+
 source: https://biopython.org/docs/latest/Tutorial/index.html
 
