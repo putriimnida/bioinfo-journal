@@ -1,0 +1,56 @@
+---
+title: "spatial_transcriptomics_WTX"
+author: "Putri Ramadani"
+date: "2026-10-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Introduction
+## 1.1. CosMx Spatial Molecular Imager
+Bulk and scRNA-seq come with a limitation, by dissociating tissue into a suspension, they erase all spatial context. We learn which cells are present, but not where they were or how they were organized.
+CosMx SMI is an in-situ imaging technology. Instead of removing cells from the tissue, it measures RNA or protein molecules directly in their native envioronment, providing a high-plex, high-resolution map of cellular activity.
+
+The underlying chemistry and hardware, detailed by He et al., enables a multi-step process:
+- Labeling: Tissue sections on a glass slide are treated with a cocktail of probes designed to bind to specific target RNA molecules. These probes act as unique, programmable labels.
+
+- Imaging Cycles: The slide is placed in the instrument and imaged in a series of cycles. In each cycle, fluorescent “reporter” probes are washed over the tissue, lighting up a subset of the molecular labels.
+
+- Barcode Reading: An image is captured in each cycle. The pattern of “on” and “off” signals for a single RNA molecule across all cycles creates a unique optical barcode that identifies the gene target. The molecule’s (X, Y, Z) coordinates are precisely measured from its position in the high-resolution images.
+
+- Cell segmentation: finally, the identified transcripts and protein markers are assigned to individual cells. This segmentation process relies on immunoflourescence (IF) stains, such as DAPI to visualize nuclei and antibodies against proteins like CD298 to visualize cell membranes that allow algorithms to accurately draw cell boundaries. 
+
+Final output: data tables, including the foundational gene-by-cell expression matrix, spatial coordinates, and morphological features for every cell. This is complemented by the raw imaging data, which enables deeper quality control and visualization, as we'll explore in later chapters.
+
+
+## 1.2. Accessing CosMx SMI Data
+the raw imaging data is uploaded to AtoMx SIP. The data can be exported for custom downstream analysis or being explored within AtoMx SIP ecosystem.
+
+
+## 1.3. Setting up the Analysis Environment
+- managing packages with `renv`
+- using a virtual python environment within `pyenv` 
+- to restore R packages use `renv::restore()` within the project folder
+- to create the python virtual env using `pyenv`:
+```bash
+pyenv install 3.10.18
+pyenv virtualenv 3.10.18 pyenv_simple
+pyenv activate pyenv_simple
+pip install -r requirements.txt
+```
+
+## 1.4 Examples Dataset
+400-field-of-view (FOV) section of FFPE colon adenocarcinoma. This tissue was analyzed using Bruker Spatial Biology’s pre-commercial WTX CosMx SMI assay and is available online.
+
+Primary biological questions of this tutorial:
+- What are the major spatial domains within this sample and what cell types do they contain?
+- What pathways are enriched within these domains?
+
+
+
+# 2. Data Wrangling
+
+source: `https://nanostring-biostats.github.io/CosMx-Analysis-Scratch-Space/guides/the-wtx-guide/`
