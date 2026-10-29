@@ -71,7 +71,7 @@ PreGame_testing_models.pkl
 PreGame_testing_feature_importance.csv         
          
 
-## Reading matrix feather 
+## a. Reading matrix feather 
 ```{bash}
 python3
 >>> import pandas as pd
@@ -109,5 +109,8 @@ python3
 4         0.754873           0.479281                     0.705498  
 >>> 
 ```
-NOTE: .feather input for PreGame needs 27 matrix (3 cellcycle columns, 19 genes, and 5 proteins), 
+NOTE: 
+- .feather input for PreGame needs 27 matrix (3 cellcycle columns, 19 genes, and 5 proteins), 
 so even their full model cannot run if we don't have the 5 protein data.
+- PreGame full model for RNA only data is available from the author along with its threshold score.  
+
