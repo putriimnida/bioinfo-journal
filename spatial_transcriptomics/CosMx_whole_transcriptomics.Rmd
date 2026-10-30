@@ -52,5 +52,24 @@ Primary biological questions of this tutorial:
 
 
 # 2. Data Wrangling
+```{r}
+source("./preamble.R")
+reticulate::source_python("./preamble.py")
+analysis_dir <- file.path(getwd(), "analysis_results")
+input_dir <- file.path(analysis_dir, "input_files")
+output_dir <- file.path(analysis_dir, "output_files")
+analysis_asset_dir <- "./assets/analysis_results"
+qc_dir <- file.path(output_dir, "output_files")
+if(!dir.exists(qc_dir)){
+  dir.create(qc_dir, recursive = TRUE)
+}
+results_list_file = file.path(analysis_dir, "results_list.rds")
+if(!file.exists(results_list_file)){
+  results_list <- list()
+  saveRDS(results_list, results_list_file)
+} else {
+  results_list <- readRDS(results_list_file)  
+}
+```
 
 source: `https://nanostring-biostats.github.io/CosMx-Analysis-Scratch-Space/guides/the-wtx-guide/`
