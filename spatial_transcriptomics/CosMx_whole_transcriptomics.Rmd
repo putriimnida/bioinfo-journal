@@ -71,5 +71,7 @@ if(!file.exists(results_list_file)){
   results_list <- readRDS(results_list_file)  
 }
 ```
+Goal: take the flat files that are exported from AtoMx SIP into a usable format.
+Split the expression data into targets, negatives, and system controls. Read in the metadata and add columns that represent the slide position in micrometers.
 
 source: `https://nanostring-biostats.github.io/CosMx-Analysis-Scratch-Space/guides/the-wtx-guide/`
