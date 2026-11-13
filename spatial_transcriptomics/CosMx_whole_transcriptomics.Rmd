@@ -72,6 +72,59 @@ if(!file.exists(results_list_file)){
 }
 ```
 Goal: take the flat files that are exported from AtoMx SIP into a usable format.
-Split the expression data into targets, negatives, and system controls. Read in the metadata and add columns that represent the slide position in micrometers.
+That format is primarily Python’s anndata format, but we can use R’s `data.table` package to efficiently read in the expression matrix file. This is much faster than reading in the expression matrix into pandas.
+
+- Split the expression data into targets, negatives, and system controls
+- Read in the metadata 
+- add columns that represent the slide position in micrometers
+```{r}
+tmp_dir <- "./tmp_dir"
+dir.create(tmp_dir, showWarnings = FALSE)
+flat_file_dir <- file.path(input_dir, "Run_b8806732_S2_Colon")
+expression_dt <- data.table::fread(
+  file.path(flat_file_dir, "S0_exprMat_file.csv.gz"),
+  tmpdir = tmp_dir)
+
+colnames(expression_dt)[which(colnames(expression_dt) == "cell_ID")] <- 'cell'
+expression_dt <- expression_dt %>% arrange(fov, cell)
+expression_dt <- expression_dt %>% mutate('cell_ID' = paste0("c_1_", fov, "_", cell))
+cell_ids_vector_r <- expression_dt$cell_ID
+
+all_feature_names <- setdiff(names(expression_dt), c("fov", "cell_ID", "cell"))
+
+neg_indices_r <- which(startsWith(all_feature_names, "Negative") | startsWith(all_feature_names, "NegPr"))
+sys_indices_r <- which(startsWith(all_feature_names, "System") | startsWith(all_feature_names, "False"))
+gene_indices_r <- which(!startsWith(all_feature_names, "Negative") &
+                          !startsWith(all_feature_names, "System") &
+                          !startsWith(all_feature_names, "NegPr") &
+                          !startsWith(all_feature_names, "False"))
+
+neg_probe_names_vector_r <- all_feature_names[neg_indices_r]
+sys_probe_names_vector_r <- all_feature_names[sys_indices_r]
+gene_probe_cols <- all_feature_names[gene_indices_r]
+
+neg_mat_r <- as.matrix(expression_dt[, ..neg_probe_names_vector_r])
+sys_mat_r <- as.matrix(expression_dt[, ..sys_probe_names_vector_r])
+gene_mat_r <- as.matrix(expression_dt[, ..gene_probe_cols])
+
+meta <- data.table::fread(file.path(flat_file_dir, "S0_metadata_file.csv.gz"))
+
+meta$tmp <- meta$cell_ID
+meta$cell_ID <- meta$cell_id
+meta$cell_id <- meta$tmp
+meta$tmp <- NULL
+
+meta <- meta %>% arrange(fov, cell_id)
+um_per_px = 0.1203
+meta$x_slide_mm <- um_per_px*meta$CenterX_global_px/1e3
+meta$y_slide_mm <- um_per_px*meta$CenterY_global_px/1e3
+
+if(nrow(meta) != nrow(gene_mat_r)){
+  stop("Error. Check file inputs.")
+}
+```
+NOTE: why is tmp_dir necessary?
+CosMx expression matrices can be large with multiple FOVs and thousands of cells. In an HPC environment, temporary files can consume considerable disk space. tmp_dir saves files from intermediate processing, it doesn't save the final expression matrix. Also, fread() doesn't necessarily retain all decompressed files there permanently. Temporary files are generally cleaned  up after processing. Distinguishing which files to delete will be easier and will avoid mixing them with other important files.
+
 
 source: `https://nanostring-biostats.github.io/CosMx-Analysis-Scratch-Space/guides/the-wtx-guide/`
