@@ -47,10 +47,13 @@ sftp> get -ar FolderName
 Note: If you aim to transfer data to High-Performance Computing cluster, SFTP can be accessed on login node, but not on compute node. So, if you wanted to transfer the data directly to compute node, ask HPC manager for help and inform them the data size to make sure you have enough room to receive it.
 
 
-# Cell segmentation on AtoMx SIP
+# Cell segmentation 
 - Cell segmentation on AtoMx SIP is performed before creating a study.
 - The process takes around 30-40 minutes to complete, no need to stay on AtoMx while cell segmentation is loading. 
-- If you're not satisfied with cell segmentation on AtoMx, alternatively you can perform cell segmentation off AtoMx using [cellpose-SAM](https://github.com/mouseland/cellpose). The process can take a few days with GPU, and may take a week or more without GPU. 
+- Background process of cell segmentation in AtoMx SIP uses cellpose-SAM.
+- If the available data and segmentation used the old version of cellpose-SAM, alternatively you can perform cell segmentation off AtoMx and update the cellpose-SAM version (check out: https://github.com/mouseland/cellpose). The process can take a few days with a GPU, and may take a week or more without one. 
+- Check out CellOverlay images to view the segmentation.
+- Check out Composite images or create them yourself (https://nanostring-biostats.github.io/CosMx-Analysis-Scratch-Space/posts/composite-images/making-composite-images.html)
 
 
 
