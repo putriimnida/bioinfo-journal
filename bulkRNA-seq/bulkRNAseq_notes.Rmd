@@ -1,0 +1,26 @@
+---
+title: "bulkRNA-seq"
+author: "Putri Ramadani"
+date: "2026-11-23"
+output: html_document
+---
+
+
+# Verifying FASTQ files against their MD5 checksums
+An MD5 checksum is a short "fingerprint" calculated from a file's contents. 
+It's a 32-character hexadecimal string, for example: d41d8cd98f00b204e9800998ecf1000e.
+Change even a single byte of the file and the checksum comes out completely different. 
+That makes it useful for checking that a file arrived intact.
+```{bash}
+# go to the directory where fastq is at
+
+cat MD5.txt        # prints the whole file
+less MD5.txt       # scroll through it (best for big files)
+md5sum MD5.txt     # calculate the checksum
+md5sum -c MD5.txt   
+```
+With -c, each file is reported as OK or FAILED.
+One caveat: MD5 is fine for catching accidental corruption. 
+It's no longer considered secure against deliberate tampering, because people can create two different files with the same MD5. 
+For security-sensitive checks, use SHA-256 (sha256sum).
+
