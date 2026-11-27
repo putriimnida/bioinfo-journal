@@ -15,7 +15,7 @@ Change even a single byte of the file and the checksum comes out completely diff
 That makes it useful for checking that a file arrived intact.
 
 ## for Mac users, use md5sum filename
-```{bash}
+```bash
 # go to the data_release directory where fastq is at
 
 cat MD5.txt        # prints the whole file
@@ -37,6 +37,20 @@ Yellow indicates processing
 Green indicates checking pass
 
 Source: Novogene MD5 manual
+
+
+
+
+# FastQC on the raw reads
+get a .html report for reads quality, possible contamination etc
+```bash
+module load fastqc
+mkdir -p fastqc_out
+fastqc -o fastqc_out \
+  /cluster/projects/xxx/01.RawData/CAF2_10/*.fq.gz \ #lowreads
+  /cluster/projects/xxx/01.RawData/HTSL_3/*.fq.gz #normal sample with high reads
+```
+
 
 
 
